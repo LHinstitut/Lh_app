@@ -4,18 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LH Institut</title>
-<!-- Polices -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 /* ===== Reset & global ===== */
 * { margin:0; padding:0; box-sizing:border-box; }
-body { 
-  font-family: 'Poppins', sans-serif; 
-  background:#FFFFFF; 
-  color:#444444; 
-}
+body { font-family: 'Poppins', sans-serif; background:#FFFFFF; color:#000000; }
 a { text-decoration:none; color: inherit; }
-h1, h2 { font-family:'Playfair Display', serif; }
+h1, h2 { font-family:'Playfair Display', serif; font-weight:700; }
 
 /* ===== Header / Bannière ===== */
 header {
@@ -30,24 +25,17 @@ header {
   text-align:center;
   overflow:hidden;
 }
-header::after {
-  content:"";
-  position:absolute;
-  top:0; left:0; width:100%; height:100%;
-  background: rgba(231,84,128,0.3); /* overlay rose framboise clair */
-}
 header h1 {
   position:relative;
-  font-family:'Great Vibes', cursive;
   font-size:2.5rem;
-  color:#C9A66B; /* doré */
-  text-shadow: 1px 1px 3px #E75480;
+  color:#4B0082; /* bleu violacé */
+  text-shadow: 0 0 10px #C9A66B, 0 0 20px #FFFFFF; /* doré + blanc brillant */
 }
 header p {
   position:relative;
   font-size:1rem;
   margin-top:5px;
-  color:#E75480; /* rose framboise */
+  color:#8A2BE2; /* violet lumineux */
   font-weight:600;
 }
 
@@ -74,7 +62,6 @@ header p {
   width:100%;
   height:100%;
   object-fit:cover;
-  opacity:0.3; /* très transparent */
   transition: transform 0.3s ease;
 }
 
@@ -83,7 +70,7 @@ header p {
 }
 
 .carte:hover {
-  box-shadow: 0 0 20px #C9A66B;
+  box-shadow: 0 0 20px #C9A66B; /* doré brillant */
 }
 
 .carte span {
@@ -91,11 +78,11 @@ header p {
   bottom:15px;
   left:50%;
   transform:translateX(-50%);
-  color:#E75480; /* rose framboise */
-  font-weight:700;
+  color:#4B0082; /* bleu violacé */
+  font-weight:600;
   font-size:1.2rem;
-  text-shadow: 1px 1px 2px #C9A66B;
-  background: rgba(255,255,255,0.7);
+  text-shadow: 1px 1px 5px #C9A66B, 0 0 3px #FFFFFF; /* doré + blanc brillant */
+  background: rgba(255,255,255,0.6);
   padding:5px 15px;
   border-radius:15px;
   text-align:center;
@@ -107,11 +94,11 @@ footer {
   justify-content:center;
   gap:30px;
   padding:20px;
-  background:#F9F9F9;
+  background:#FFFFFF;
 }
 
 footer a {
-  background:#E75480;
+  background:#4B0082; /* bleu violacé */
   color:#FFFFFF;
   padding:10px 20px;
   border-radius:25px;
@@ -120,17 +107,17 @@ footer a {
 }
 
 footer a:hover {
-  background:#C9A66B;
-  box-shadow: 0 0 10px #C9A66B;
+  background:#C9A66B; /* doré */
+  box-shadow: 0 0 15px #C9A66B;
 }
 
 /* ===== Responsive ===== */
 @media(min-width:768px){
-  .carte { width:220px; height:330px; }
+  .carte { width:180px; height:270px; }
 }
 
 @media(min-width:1024px){
-  .carte { width:250px; height:370px; }
+  .carte { width:200px; height:300px; }
 }
 
 /* ===== Animations au chargement ===== */
@@ -157,7 +144,7 @@ body {
   <a href="teint.html" class="carte"><img src="fond_teint.jpg" alt="Teint"><span>Teint</span></a>
   <a href="forme.html" class="carte"><img src="fond_forme.jpg" alt="Forme"><span>Forme</span></a>
   <a href="ventreplat.html" class="carte"><img src="fond_ventreplat.jpg" alt="Ventre Plat"><span>Ventre Plat</span></a>
-  <a href="ingredient.html" class="carte"><img src="fond_ingredients.jpg" alt="Ingrédients"><span>Ingrédients</span></a>
+  <a href="ingredients.html" class="carte"><img src="fond_ingrédient.jpg" alt="Ingrédients"><span>Ingrédients</span></a>
   <a href="formation.html" class="carte"><img src="fond_formation.jpg" alt="Formation"><span>Formation</span></a>
 </section>
 
@@ -172,7 +159,6 @@ body {
 function filtrerProduits() {
   let input = document.getElementById('recherche')?.value.toLowerCase() || '';
   let produits = document.querySelectorAll('.produit');
-  
   produits.forEach(p => {
     let nom = p.dataset.nom.toLowerCase();
     p.style.display = nom.includes(input) ? 'block' : 'none';

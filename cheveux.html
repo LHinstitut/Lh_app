@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheveux - LH Institut</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Poppins', sans-serif; background:#0D0D0D; color:#F9F9F9; }
+a { text-decoration:none; color: inherit; }
+h1, h2 { font-family:'Playfair Display', serif; }
+
+/* ===== Header ===== */
+header {
+  position: relative;
+  width:100%;
+  height:120px;
+  background: url('fond_cheveux.jpg') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color:#F6DCE6;
+  overflow:hidden;
+}
+header::after {
+  content:"";
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.4);
+}
+header h1 {
+  position:relative;
+  font-size:1.8rem;
+  color:#F6DCE6;
+  text-shadow:1px 1px 3px #C9A66B;
+}
+header a {
+  position:relative;
+  background:#F6DCE6;
+  color:#0D0D0D;
+  padding:8px 15px;
+  border-radius:20px;
+  font-weight:600;
+  transition:0.3s;
+}
+header a:hover {
+  background:#C9A66B;
+}
+
+/* ===== Barre de recherche ===== */
+#recherche {
+  display:block;
+  margin:20px auto;
+  padding:10px 15px;
+  border-radius:20px;
+  border:none;
+  width:80%;
+  max-width:400px;
+  font-size:1rem;
+}
+
+/* ===== Produits ===== */
+.produits-container {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  padding:20px;
+}
+
+.produit {
+  position:relative;
+  width:300px;
+  height:600px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#121212;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.produit:hover {
+  transform: scale(1.03);
+  box-shadow:0 0 20px #C9A66B;
+}
+
+.produit img {
+  width:100%;
+  height:60%;
+  object-fit:cover;
+}
+
+.produit h2 {
+  text-align:center;
+  margin:10px 0;
+  color:#F6DCE6;
+  font-size:1.2rem;
+}
+
+.produit .btn-group {
+  display:flex;
+  justify-content:space-around;
+  margin-top:15px;
+}
+
+.produit button {
+  padding:10px 15px;
+  border:none;
+  border-radius:20px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.acheter { background:#F6DCE6; color:#0D0D0D; }
+.acheter:hover { background:#C9A66B; }
+
+.role { background:#0D0D0D; color:#F6DCE6; border:1px solid #F6DCE6; }
+.role:hover { background:#F6DCE6; color:#0D0D0D; }
+
+/* ===== Footer ===== */
+footer {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  padding:20px;
+  background:#121212;
+}
+
+footer a {
+  background:#F6DCE6;
+  color:#0D0D0D;
+  padding:10px 20px;
+  border-radius:25px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+footer a:hover {
+  background:#C9A66B;
+  box-shadow:0 0 10px #C9A66B;
+}
+
+/* ===== Animations chargement ===== */
+body { opacity:0; animation: fadeIn 1s forwards; }
+@keyframes fadeIn { to { opacity:1; } }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <h1>LH Institut</h1>
+  <a href="index.html">Accueil</a>
+</header>
+
+<!-- ===== Barre de recherche ===== -->
+<input type="text" id="recherche" placeholder="Rechercher un produit..." onkeyup="filtrerProduits()">
+
+<!-- ===== Produits ===== -->
+<div class="produits-container">
+
+<div class="produit" data-nom="Crème Xtra pousse">
+  <img src="creme_xtra.jpg" alt="Crème Xtra pousse">
+  <h2>Crème Xtra pousse</h2>
+  <div class="btn-group">
+    <button class="acheter" onclick="window.location.href='#'">Acheter</button>
+    <button class="role" onclick="ouvrirPopup('Crème Xtra pousse')">Rôle</button>
+  </div>
+</div>
+
+<div class="produit" data-nom="Huile Xtra pousse">
+  <img src="huile_xtra.jpg" alt="Huile Xtra pousse">
+  <h2>Huile Xtra pousse</h2>
+  <div class="btn-group">
+    <button class="acheter" onclick="window.location.href='#'">Acheter</button>
+    <button class="role" onclick="ouvrirPopup('Huile Xtra pousse')">Rôle</button>
+  </div>
+</div>
+
+<div class="produit" data-nom="Shampoing nettoyant">
+  <img src="shampoing_net.jpg" alt="Shampoing nettoyant">
+  <h2>Shampoing nettoyant</h2>
+  <div class="btn-group">
+    <button class="acheter" onclick="window.location.href='#'">Acheter</button>
+    <button class="role" onclick="ouvrirPopup('Shampoing nettoyant')">Rôle</button>
+  </div>
+</div>
+
+<div class="produit" data-nom="Spray démêlant">
+  <img src="spray_deme.jpg" alt="Spray démêlant">
+  <h2>Spray démêlant</h2>
+  <div class="btn-group">
+    <button class="acheter" onclick="window.location.href='#'">Acheter</button>
+    <button class="role" onclick="ouvrirPopup('Spray démêlant')">Rôle</button>
+  </div>
+</div>
+
+<div class="produit" data-nom="Masque démêlant">
+  <img src="masque_deme.jpg" alt="Masque démêlant">
+  <h2>Masque démêlant</h2>
+  <div class="btn-group">
+    <button class="acheter" onclick="window.location.href='#'">Acheter</button>
+    <button class="role" onclick="ouvrirPopup('Masque démêlant')">Rôle</button>
+  </div>
+</div>
+
+<div class="produit" data-nom="Masque Xtra pousse">
+  <img src="masque_xtra.jpg" alt="Masque Xtra pousse">
+  <h2>Masque Xtra pousse</h2>
+  <div class="btn-group">
+    <button class="acheter" onclick="window.location.href='#'">Acheter</button>
+    <button class="role" onclick="ouvrirPopup('Masque Xtra pousse')">Rôle</button>
+  </div>
+</div>
+
+<div class="produit" data-nom="Masque anti âge">
+  <img src="masque_age.jpg" alt="Masque anti âge">
+  <h2>Masque anti âge</h2>
+  <div class="btn-group">
+    <button class="acheter" onclick="window.location.href='#'">Acheter</button>
+    <button class="role" onclick="ouvrirPopup('Masque anti âge')">Rôle</button>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+  <a href="mailto:ladieshouse516@gmail.com">Email</a>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script>
+// Barre de recherche
+function filtrerProduits() {
+  let input = document.getElementById('recherche').value.toLowerCase();
+  let produits = document.querySelectorAll('.produit');
+  produits.forEach(p => {
+    let nom = p.dataset.nom.toLowerCase();
+    p.style.display = nom.includes(input) ? 'block' : 'none';
+  });
+}
+
+// Popup Rôle
+function ouvrirPopup(produit) {
+  // ouvre popup.cheveux.html avec nom du produit en paramètre
+  window.open('popup.cheveux.html?produit=' + encodeURIComponent(produit), 'popup', 'width=500,height=600');
+}
+</script>
+
+</body>
+</html>

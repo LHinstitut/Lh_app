@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LH Institut</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset & global ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Poppins', sans-serif; background:#0D0D0D; color:#F9F9F9; }
+a { text-decoration:none; color: inherit; }
+h1, h2 { font-family:'Playfair Display', serif; }
+
+/* ===== Header / Bannière ===== */
+header {
+  position: relative;
+  width:100%;
+  height:120px;
+  background: url('fond_banniere.jpg') center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#F6DCE6;
+  overflow:hidden;
+}
+header::after {
+  content:"";
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.4); /* overlay semi-transparent */
+}
+header h1 {
+  position:relative;
+  font-size:2rem;
+  font-weight:700;
+  color:#F6DCE6;
+  text-shadow: 1px 1px 3px #C9A66B; /* doré très fin */
+}
+header p {
+  position:relative;
+  font-size:1rem;
+  margin-top:5px;
+  color:#fff;
+  opacity:0.9;
+}
+
+/* ===== Section Catégories ===== */
+.categories {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  padding:30px;
+}
+
+.carte {
+  position: relative;
+  width:200px; /* sur mobile, réduit la largeur */
+  height:300px; /* ajusté pour mobile, desktop utilisera CSS media queries */
+  border-radius:20px;
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carte img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.9;
+  transition: transform 0.3s ease;
+}
+
+.carte:hover img {
+  transform: scale(1.05);
+}
+
+.carte:hover {
+  box-shadow: 0 0 20px #C9A66B;
+}
+
+.carte span {
+  position:absolute;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#F6DCE6;
+  font-weight:600;
+  font-size:1.2rem;
+  text-shadow: 1px 1px 2px #C9A66B;
+  background: rgba(0,0,0,0.3);
+  padding:5px 15px;
+  border-radius:15px;
+  text-align:center;
+}
+
+/* ===== Footer ===== */
+footer {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  padding:20px;
+  background:#121212;
+}
+
+footer a {
+  background:#F6DCE6;
+  color:#0D0D0D;
+  padding:10px 20px;
+  border-radius:25px;
+  font-weight:600;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+footer a:hover {
+  background:#C9A66B;
+  box-shadow: 0 0 10px #C9A66B;
+}
+
+/* ===== Responsive ===== */
+@media(min-width:768px){
+  .carte { width:180px; height:270px; }
+}
+
+@media(min-width:1024px){
+  .carte { width:200px; height:300px; }
+}
+
+/* ===== Animations au chargement ===== */
+body {
+  opacity:0;
+  animation: fadeInBody 1s forwards;
+}
+@keyframes fadeInBody {
+  to { opacity:1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header / Bannière ===== -->
+<header>
+  <h1>LH Institut</h1>
+  <p>Luxe, élégance et beauté naturelle</p>
+</header>
+
+<!-- ===== Catégories ===== -->
+<section class="categories">
+  <a href="cheveux.html" class="carte"><img src="fond_cheveux.jpg" alt="Cheveux"><span>Cheveux</span></a>
+  <a href="teint.html" class="carte"><img src="fond_teint.jpg" alt="Teint"><span>Teint</span></a>
+  <a href="forme.html" class="carte"><img src="fond_forme.jpg" alt="Forme"><span>Forme</span></a>
+  <a href="ventreplat.html" class="carte"><img src="fond_ventreplat.jpg" alt="Ventre Plat"><span>Ventre Plat</span></a>
+  <a href="ingredients.html" class="carte"><img src="fond_ingredients.jpg" alt="Ingrédients"><span>Ingrédients</span></a>
+  <a href="formation.html" class="carte"><img src="fond_formation.jpg" alt="Formation"><span>Formation</span></a>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+  <a href="mailto:ladieshouse516@gmail.com">Email</a>
+</footer>
+
+<!-- ===== Script barre de recherche (à mettre sur pages catégories) ===== -->
+<script>
+function filtrerProduits() {
+  let input = document.getElementById('recherche')?.value.toLowerCase() || '';
+  let produits = document.querySelectorAll('.produit');
+  
+  produits.forEach(p => {
+    let nom = p.dataset.nom.toLowerCase();
+    p.style.display = nom.includes(input) ? 'block' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>

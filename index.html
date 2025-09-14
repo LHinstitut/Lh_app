@@ -1,169 +1,544 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>LH Institut</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<!-- Polices -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
 <style>
-/* ===== Reset & global ===== */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: 'Poppins', sans-serif; background:#FFFFFF; color:#000000; }
-a { text-decoration:none; color: inherit; }
-h1, h2 { font-family:'Playfair Display', serif; font-weight:700; }
+  :root{
+    --white:#FFFFFF;
+    --black:#000000;
+    --violet:#4B0082;        /* bleu-violacé */
+    --violet-acc:#6A2DBD;    /* accent violet plus doux */
+    --gold:#C9A66B;
+    --muted:#444444;
+    --footer-dark:#0f0d12;
+    --glass: rgba(255,255,255,0.85);
+    --radius:18px;
+  }
 
-/* ===== Header / Bannière ===== */
-header {
-  position: relative;
-  width:100%;
-  height:120px;
-  background: url('fond_bannière.jpg') center/cover no-repeat;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-}
-header h1 {
-  position:relative;
-  font-size:2.5rem;
-  color:#4B0082; /* bleu violacé */
-  text-shadow: 0 0 10px #C9A66B, 0 0 20px #FFFFFF; /* doré + blanc brillant */
-}
-header p {
-  position:relative;
-  font-size:1rem;
-  margin-top:5px;
-  color:#8A2BE2; /* violet lumineux */
-  font-weight:600;
-}
+  /* Reset */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--white);
+    color:var(--black);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+  a{color:inherit;text-decoration:none}
 
-/* ===== Section Catégories ===== */
-.categories {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-  padding:30px;
-}
+  /* Header / bannière */
+  header{
+    position:relative;
+    width:100%;
+    height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    background: url('fond_banniere.jpg') center/cover no-repeat;
+  }
+  /* subtle colored overlay to ensure text legibility + golden ribbon behind phrase */
+  header::before{
+    content:"";
+    position:absolute;inset:0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,240,240,0.06));
+    pointer-events:none;
+  }
+  header .meta{
+    position:relative;
+    z-index:2;
+  }
+  header h1{
+    font-family:'Playfair Display',serif;
+    color: var(--violet);
+    font-size:2.2rem;
+    letter-spacing:0.6px;
+    text-shadow: 0 2px 8px rgba(201,166,107,0.25), 0 0 8px rgba(255,255,255,0.6);
+    margin-bottom:6px;
+  }
+  header p{
+    display:inline-block;
+    background: linear-gradient(90deg, rgba(201,166,107,0.14), rgba(255,255,255,0.35));
+    padding:6px 14px;
+    border-radius:12px;
+    color:var(--violet-acc);
+    font-weight:600;
+    box-shadow: 0 2px 8px rgba(201,166,107,0.06);
+  }
 
-.carte {
-  position: relative;
-  width:200px;
-  height:300px;
-  border-radius:20px;
-  overflow:hidden;
-  cursor:pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  /* Top-left vertical "..." menu */
+  .kebab {
+    position: absolute;
+    top:12px;
+    left:12px;
+    z-index:10;
+  }
+  .kebab button{
+    background:transparent;
+    border:none;
+    font-size:22px;
+    color:var(--violet);
+    cursor:pointer;
+    padding:8px;
+    border-radius:10px;
+  }
+  .kebab .menu{
+    position:absolute;
+    top:44px;
+    left:0;
+    background:var(--white);
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.12);
+    overflow:hidden;
+    display:none;
+    min-width:200px;
+  }
+  .kebab .menu a{
+    display:block;
+    padding:12px 14px;
+    color:var(--muted);
+    font-weight:600;
+    border-bottom:1px solid rgba(0,0,0,0.04);
+  }
+  .kebab .menu a:hover{background:rgba(75,0,130,0.04); color:var(--violet)}
 
-.carte img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition: transform 0.3s ease;
-}
+  /* Main container */
+  .container{max-width:1100px;margin:20px auto;padding:0 16px}
 
-.carte:hover img {
-  transform: scale(1.05);
-}
+  /* Search bar (filters homepage elements) */
+  .search-row{display:flex;justify-content:center;margin:12px 0 22px}
+  .search-row input{
+    width:100%;max-width:680px;padding:12px 16px;border-radius:999px;border:1px solid rgba(75,0,130,0.12);
+    box-shadow:0 6px 18px rgba(106,45,189,0.04);
+    font-size:1rem;
+  }
 
-.carte:hover {
-  box-shadow: 0 0 20px #C9A66B; /* doré brillant */
-}
+  /* About / services */
+  .apropos{
+    text-align:center;padding:22px 18px;margin-bottom:18px;
+  }
+  .apropos h2{
+    color:var(--violet);
+    font-family:'Playfair Display',serif;
+    font-size:1.6rem;margin-bottom:10px;
+    text-shadow:0 2px 8px rgba(201,166,107,0.12);
+  }
+  .apropos p{max-width:900px;margin:0 auto;color:var(--muted);font-size:1rem}
+  .location{margin-top:12px;color:var(--violet-acc);font-weight:700}
 
-.carte span {
-  position:absolute;
-  bottom:15px;
-  left:50%;
-  transform:translateX(-50%);
-  color:#4B0082; /* bleu violacé */
-  font-weight:600;
-  font-size:1.2rem;
-  text-shadow: 1px 1px 5px #C9A66B, 0 0 3px #FFFFFF; /* doré + blanc brillant */
-  background: rgba(255,255,255,0.6);
-  padding:5px 15px;
-  border-radius:15px;
-  text-align:center;
-}
+  /* Values / icons row */
+  .values{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:18px 0}
+  .value-card{background:linear-gradient(180deg, rgba(75,0,130,0.03), rgba(201,166,107,0.02));padding:14px;border-radius:14px;min-width:180px;max-width:250px;text-align:center}
+  .value-card h3{color:var(--violet);margin-bottom:6px;font-size:1rem}
+  .value-card p{color:var(--muted);font-size:0.95rem}
 
-/* ===== Footer ===== */
-footer {
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  padding:20px;
-  background:#FFFFFF;
-}
+  /* Categories grid */
+  .categories{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:18px;
+    margin:18px 0 26px;
+  }
+  .carte{
+    position:relative;border-radius:var(--radius);overflow:hidden;height:340px;display:block;
+    transition: transform .35s ease, box-shadow .35s ease;
+    border: 1px solid rgba(75,0,130,0.06);
+    background:#fff;
+  }
+  .carte img{width:100%;height:100%;object-fit:cover;display:block}
+  .carte .label{
+    position:absolute;left:50%;transform:translateX(-50%);bottom:18px;background:var(--glass);padding:10px 16px;border-radius:14px;
+    color:var(--violet);font-weight:700;box-shadow:0 6px 20px rgba(75,0,130,0.06);
+    text-shadow: 0 1px 6px rgba(201,166,107,0.08);
+  }
+  .carte:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(75,0,130,0.08)}
 
-footer a {
-  background:#4B0082; /* bleu violacé */
-  color:#FFFFFF;
-  padding:10px 20px;
-  border-radius:25px;
-  font-weight:600;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
+  /* Add specific category card for rendez-vous */
+  .carte.rdv .label{background:linear-gradient(90deg, rgba(75,0,130,0.06), rgba(201,166,107,0.06));color:var(--gold)}
 
-footer a:hover {
-  background:#C9A66B; /* doré */
-  box-shadow: 0 0 15px #C9A66B;
-}
+  /* Services list */
+  .services{margin:26px 0;display:grid;gap:12px}
+  .service-item{
+    display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);
+    background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,245,250,0.95));
+  }
+  .service-item .left{display:flex;gap:12px;align-items:center}
+  .pill{background:linear-gradient(90deg,var(--violet),var(--violet-acc));color:#fff;padding:8px 12px;border-radius:999px;font-weight:700}
+  .service-item .desc{color:var(--muted)}
+  .service-item button{
+    background: linear-gradient(90deg,var(--violet),var(--violet-acc));color:#fff;border:none;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:700;
+    box-shadow:0 10px 24px rgba(106,45,189,0.12);
+  }
 
-/* ===== Responsive ===== */
-@media(min-width:768px){
-  .carte { width:180px; height:270px; }
-}
+  /* Carousel before/after - horizontal scroll with snap and auto-scroll */
+  .carousel-wrap{margin:22px 0;overflow:hidden;border-radius:14px}
+  .carousel{
+    display:flex;gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+  }
+  .slide{flex:0 0 300px;height:220px;border-radius:12px;overflow:hidden;scroll-snap-align:center;position:relative;border:1px solid rgba(0,0,0,0.06)}
+  .slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .slide .tag{position:absolute;left:10px;top:10px;background:var(--gold);color:#111;padding:6px 10px;border-radius:10px;font-weight:700;font-size:0.85rem}
 
-@media(min-width:1024px){
-  .carte { width:200px; height:300px; }
-}
+  /* Testimonials */
+  .testimonials{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+  .testi{padding:14px;border-radius:12px;background:linear-gradient(180deg, #fff, #faf8ff);border:1px solid rgba(75,0,130,0.04)}
+  .stars{color:var(--gold);font-size:0.95rem;margin-bottom:8px}
+  .testi .name{font-weight:700;color:var(--violet);margin-bottom:6px}
 
-/* ===== Animations au chargement ===== */
-body {
-  opacity:0;
-  animation: fadeInBody 1s forwards;
-}
-@keyframes fadeInBody {
-  to { opacity:1; }
-}
+  /* FAQ list */
+  .faq{display:flex;flex-direction:column;gap:8px;margin:18px 0}
+  .faq button{display:block;text-align:left;padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,0.06);cursor:pointer;font-weight:600;color:var(--muted)}
+  .faq button:hover{background:rgba(75,0,130,0.03);color:var(--violet)}
+
+  /* Footer */
+  footer{margin-top:24px;background:var(--white);padding:18px 16px}
+  .footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;max-width:1100px;margin:0 auto}
+  .footer-links a{display:inline-block;margin-right:12px;color:var(--muted);font-weight:600}
+  .footer-actions a{background:linear-gradient(90deg,var(--violet),var(--violet-acc));color:#fff;padding:10px 16px;border-radius:20px;font-weight:700}
+
+  /* dark band at very bottom with gold line */
+  .bottom-band{background:var(--footer-dark);color:#fff;padding:10px 0;margin-top:16px;position:relative}
+  .bottom-band::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--gold),rgba(201,166,107,0.4));}
+  .bottom-band .inner{max-width:1100px;margin:8px auto;padding:0 16px;text-align:center;color:#ddd;font-size:0.95rem}
+
+  /* floating whatsapp -->
+  .whatsapp-fab{position:fixed;right:16px;bottom:90px;background:linear-gradient(90deg,var(--violet),var(--violet-acc));color:#fff;padding:12px 14px;border-radius:999px;box-shadow:0 14px 30px rgba(106,45,189,0.18);z-index:999;font-weight:800}
+  .quick-links{display:flex;gap:12px;align-items:center}
+
+  /* responsive */
+  @media (max-width:800px){
+    header{height:110px;background-position:center 20%}
+    .categories{grid-template-columns:1fr;gap:12px}
+    .carte{height:300px}
+    .slide{flex:0 0 240px;height:180px}
+    .footer-top{flex-direction:column;align-items:flex-start}
+    .whatsapp-fab{bottom:120px}
+  }
 </style>
 </head>
 <body>
 
-<!-- ===== Header / Bannière ===== -->
+<!-- TOP-LEFT kebab menu -->
+<div class="kebab" aria-hidden="false">
+  <button id="kebabBtn">⋮</button>
+  <nav class="menu" id="kebabMenu" role="menu" aria-hidden="true">
+    <a href="rendezvous.html">Prendre rendez-vous</a>
+    <a href="partenaire.html">Devenir partenaire</a>
+    <a href="commentaire.html">Envoyer un commentaire</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<!-- Header / banner -->
 <header>
-  <h1>LH Institut</h1>
-  <p>Luxe, élégance et beauté naturelle</p>
+  <div class="meta">
+    <h1>LH Institut</h1>
+    <p>Luxe, élégance et beauté naturelle</p>
+  </div>
 </header>
 
-<!-- ===== Catégories ===== -->
-<section class="categories">
-  <a href="cheveux.html" class="carte"><img src="fond_cheveux.jpg" alt="Cheveux"><span>Cheveux</span></a>
-  <a href="teint.html" class="carte"><img src="fond_teint.jpg" alt="Teint"><span>Teint</span></a>
-  <a href="forme.html" class="carte"><img src="fond_forme.jpg" alt="Forme"><span>Forme</span></a>
-  <a href="ventreplat.html" class="carte"><img src="fond_ventreplat.jpg" alt="Ventre Plat"><span>Ventre Plat</span></a>
-  <a href="ingredients.html" class="carte"><img src="fond_ingrédient.jpg" alt="Ingrédients"><span>Ingrédients</span></a>
-  <a href="formation.html" class="carte"><img src="fond_formation.jpg" alt="Formation"><span>Formation</span></a>
-</section>
+<!-- Main content -->
+<main class="container" role="main">
 
-<!-- ===== Footer ===== -->
+  <!-- Search bar (filters categories / services / faqs / testimonials) -->
+  <div class="search-row">
+    <input id="globalSearch" type="search" placeholder="Rechercher une catégorie, un service, une FAQ ou un témoignage..." aria-label="Rechercher" />
+  </div>
+
+  <!-- About -->
+  <section class="apropos" id="apropos" data-search="apropos LH Institut produits soins personnalisés">
+    <h2>À propos de LH Institut</h2>
+    <p>
+      LH Institut propose des <strong>produits capillaires haut de gamme</strong> et des soins sur-mesure
+      pour révéler la beauté naturelle. Nos protocoles combinent ingrédients choisis et expertise professionnelle
+      pour des résultats visibles et durables.
+    </p>
+    <div class="location">📍 Ouidah, Bénin</div>
+  </section>
+
+  <!-- Values -->
+  <section class="values" aria-hidden="false">
+    <div class="value-card" data-search="naturel">
+      <h3>Produits naturels</h3>
+      <p>Des formules soigneusement sélectionnées, respectueuses du cheveu.</p>
+    </div>
+    <div class="value-card" data-search="luxe">
+      <h3>Luxe & élégance</h3>
+      <p>Une expérience sensorielle dans un cadre chic et chaleureux.</p>
+    </div>
+    <div class="value-card" data-search="expertise">
+      <h3>Expertise professionnelle</h3>
+      <p>Conseils personnalisés par des spécialistes du cheveu.</p>
+    </div>
+    <div class="value-card" data-search="accompagnement">
+      <h3>Accompagnement</h3>
+      <p>Suivi et conseils pour des routines efficaces à la maison.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section>
+    <h2 style="color:var(--violet);margin-bottom:10px">Nos services</h2>
+    <div class="services" id="servicesList">
+      <div class="service-item" data-search="soins capillaires soin capillaire">
+        <div class="left">
+          <div class="pill">Soin</div>
+          <div class="desc">
+            <div style="font-weight:700">Soins capillaires intensifs</div>
+            <div style="font-size:0.9rem;color:var(--muted)">Réparations, nutrition en profondeur et vitalité</div>
+          </div>
+        </div>
+        <div><button onclick="location.href='rendezvous.html'">Prendre rendez-vous</button></div>
+      </div>
+
+      <div class="service-item" data-search="consultation gratuite cheveux consultation gratuite">
+        <div class="left">
+          <div class="pill">Consultation</div>
+          <div class="desc">
+            <div style="font-weight:700">Consultations gratuites pour les cheveux</div>
+            <div style="font-size:0.9rem;color:var(--muted)">Diagnostic personnalisé et routine recommandée</div>
+          </div>
+        </div>
+        <div><button onclick="location.href='rendezvous.html'">Prendre rendez-vous</button></div>
+      </div>
+
+      <div class="service-item" data-search="coiffure">
+        <div class="left">
+          <div class="pill">Coiffure</div>
+          <div class="desc">
+            <div style="font-weight:700">Coiffures & styling</div>
+            <div style="font-size:0.9rem;color:var(--muted)">Coupe, brushing, coiffage événementiel</div>
+          </div>
+        </div>
+        <div><button onclick="location.href='rendezvous.html'">Prendre rendez-vous</button></div>
+      </div>
+
+      <div class="service-item" data-search="formation">
+        <div class="left">
+          <div class="pill">Formation</div>
+          <div class="desc">
+            <div style="font-weight:700">Formations professionnelles</div>
+            <div style="font-size:0.9rem;color:var(--muted)">Ateliers & formations techniques pour professionnels</div>
+          </div>
+        </div>
+        <div><button onclick="location.href='formation.html'">En savoir</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories (grid) -->
+  <section aria-label="Catégories" style="margin-top:20px">
+    <h2 style="color:var(--violet);margin-bottom:10px">Catégories</h2>
+    <div class="categories" id="categoriesGrid">
+      <a class="carte" href="cheveux.html" data-search="cheveux produits cheveux">
+        <img src="fond_cheveux.jpg" alt="Cheveux">
+        <div class="label">Cheveux</div>
+      </a>
+
+      <a class="carte" href="teint.html" data-search="teint cosmetique peau">
+        <img src="fond_teint.jpg" alt="Teint">
+        <div class="label">Teint</div>
+      </a>
+
+      <a class="carte" href="forme.html" data-search="forme bien-être">
+        <img src="fond_forme.jpg" alt="Forme">
+        <div class="label">Forme</div>
+      </a>
+
+      <a class="carte" href="ventreplat.html" data-search="ventre plat minceur">
+        <img src="fond_ventreplat.jpg" alt="Ventre Plat">
+        <div class="label">Ventre Plat</div>
+      </a>
+
+      <a class="carte" href="ingredients.html" data-search="ingredients naturel composition">
+        <img src="fond_ingredients.jpg" alt="Ingrédients">
+        <div class="label">Ingrédients</div>
+      </a>
+
+      <a class="carte" href="formation.html" data-search="formation atelier cours">
+        <img src="fond_formation.jpg" alt="Formation">
+        <div class="label">Formation</div>
+      </a>
+
+      <!-- Prendre rendez-vous - category card -->
+      <a class="carte rdv" href="rendezvous.html" data-search="prendre rendez-vous rdv">
+        <img src="fond_rendezvous.jpg" alt="Prendre rendez-vous">
+        <div class="label">Prendre rendez-vous</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Carousel before/after -->
+  <section>
+    <h2 style="color:var(--violet);margin-bottom:10px">Avant → Après</h2>
+    <div class="carousel-wrap">
+      <div class="carousel" id="carousel">
+        <div class="slide"><img src="before1.jpg" alt="avant1"><div class="tag">Avant</div></div>
+        <div class="slide"><img src="after1.jpg" alt="apres1"><div class="tag">Après</div></div>
+        <div class="slide"><img src="before2.jpg" alt="avant2"><div class="tag">Avant</div></div>
+        <div class="slide"><img src="after2.jpg" alt="apres2"><div class="tag">Après</div></div>
+        <!-- ajoute d'autres slides with file names before3.jpg / after3.jpg etc -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <h2 style="color:var(--violet);margin-bottom:10px">Témoignages</h2>
+    <div class="testimonials" id="testimonials">
+      <div class="testi" data-search="Alida 5 étoiles">
+        <div class="stars">★★★★★</div>
+        <div class="name">Alida</div>
+        <div class="text">"L'efficacité est réelle : mes cheveux ont repris force et éclat après seulement quelques semaines."</div>
+      </div>
+
+      <div class="testi" data-search="Ruth 4 étoiles">
+        <div class="stars">★★★★☆</div>
+        <div class="name">Ruth</div>
+        <div class="text">"Accueil et conseils professionnels — la routine capillaire qu'on m'a donnée a fait la différence."</div>
+      </div>
+
+      <div class="testi" data-search="Samira 3 étoiles">
+        <div class="stars">★★★☆☆</div>
+        <div class="name">Samira</div>
+        <div class="text">"Produits de qualité, un peu cher mais les résultats sont là."</div>
+      </div>
+
+      <div class="testi" data-search="poudre belle forme">
+        <div class="stars">★★★★★</div>
+        <div class="name">Client (Poudre Belle Forme)</div>
+        <div class="text">"La poudre Belle Forme m'a aidée à gagner en rondeur : efficace et naturel — je recommande !"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2 style="color:var(--violet);margin-bottom:10px">FAQ</h2>
+    <div class="faq" id="faqList">
+      <button data-search="livré pays" onclick="openFaqPopup('Puis-je être livré dans mon pays ?')">Puis-je être livré dans mon pays ?</button>
+      <button data-search="paiement" onclick="openFaqPopup('Comment puis-je payer ?')">Comment puis-je payer ?</button>
+      <button data-search="retour" onclick="openFaqPopup('Quelle est votre politique de retour ?')">Politique de retour</button>
+    </div>
+  </section>
+
+  <!-- Small links: devenir partenaire / laisser un commentaire -->
+  <section style="margin:20px 0;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+    <a href="partenaire.html" style="color:var(--violet);font-weight:700">Devenir partenaire</a>
+    <a href="commentaire.html" style="color:var(--muted);font-weight:700">Laisser un commentaire</a>
+  </section>
+
+</main>
+
+<!-- Footer -->
 <footer>
-  <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
-  <a href="mailto:ladieshouse516@gmail.com">Email</a>
+  <div class="footer-top">
+    <div>
+      <div style="font-weight:800;color:var(--violet);font-family:'Playfair Display',serif">LH Institut</div>
+      <div style="color:var(--muted);font-size:0.95rem;margin-top:6px">Ouidah, Bénin — © 2025 LH Institut</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="rendezvous.html">Prendre rendez-vous</a>
+      <a href="formation.html">Formation</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-actions">
+      <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+      <a href="mailto:ladieshouse516@gmail.com">Email</a>
+    </div>
+  </div>
 </footer>
 
-<!-- ===== Script barre de recherche (à mettre sur pages catégories) ===== -->
+<!-- bottom dark band with gold line -->
+<div class="bottom-band">
+  <div class="inner">
+    <div>Site créé par LH Institut — Tous droits réservés</div>
+  </div>
+</div>
+
+<!-- Floating WhatsApp -->
+<a class="whatsapp-fab" href="https://wa.me/2290153321211" target="_blank" aria-label="WhatsApp">WhatsApp</a>
+
+<!-- Scripts -->
 <script>
-function filtrerProduits() {
-  let input = document.getElementById('recherche')?.value.toLowerCase() || '';
-  let produits = document.querySelectorAll('.produit');
-  produits.forEach(p => {
-    let nom = p.dataset.nom.toLowerCase();
-    p.style.display = nom.includes(input) ? 'block' : 'none';
+  /* Kebab menu toggle */
+  const kebabBtn = document.getElementById('kebabBtn');
+  const kebabMenu = document.getElementById('kebabMenu');
+  kebabBtn.addEventListener('click', e=>{
+    const visible = kebabMenu.style.display === 'block';
+    kebabMenu.style.display = visible ? 'none' : 'block';
+    kebabMenu.setAttribute('aria-hidden', visible ? 'true' : 'false');
   });
-}
+  // close on outside click
+  document.addEventListener('click', e=>{
+    if(!kebabMenu.contains(e.target) && e.target !== kebabBtn) kebabMenu.style.display='none';
+  });
+
+  /* Global search filtering (works on elements having data-search attribute) */
+  const searchInput = document.getElementById('globalSearch');
+  searchInput.addEventListener('input', ()=> {
+    const q = searchInput.value.trim().toLowerCase();
+    if(q === '') {
+      // show all
+      document.querySelectorAll('[data-search]').forEach(el=> el.style.display = '');
+      return;
+    }
+    document.querySelectorAll('[data-search]').forEach(el=>{
+      const txt = (el.getAttribute('data-search') || '').toLowerCase();
+      el.style.display = txt.includes(q) ? '' : 'none';
+    });
+  });
+
+  /* Carousel auto-scroll to left */
+  (function(){
+    const carousel = document.getElementById('carousel');
+    if(!carousel) return;
+    let scrollAmount = 0;
+    const step = 2; // px per tick
+    const delay = 20; // ms
+    let direction = 1;
+    function tick(){
+      if(!carousel) return;
+      carousel.scrollLeft += step * direction;
+      // if at end, snap to start slowly
+      if(carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 2){
+        // reset to start smoothly
+        carousel.scrollTo({left:0,behavior:'smooth'});
+      }
+    }
+    let timer = setInterval(tick, delay);
+    // pause on hover
+    carousel.addEventListener('mouseenter', ()=> clearInterval(timer));
+    carousel.addEventListener('mouseleave', ()=> timer = setInterval(tick, delay));
+  })();
+
+  /* FAQ popup: opens faq.popup.html with query param question */
+  function openFaqPopup(question){
+    const url = 'faq.popup.html?q=' + encodeURIComponent(question);
+    window.open(url,'faq_popup','width=520,height=520,toolbar=0,menubar=0');
+  }
+
+  /* small accessibility improvements */
+  (function(){
+    // ensure images have alt text (left as provided)
+  })();
+
+  /* ensure all external links open in new tab where appropriate */
+  document.querySelectorAll('a[target="_blank"]').forEach(a=> a.rel='noopener noreferrer');
 </script>
 
 </body>

@@ -3,69 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rôle Produit</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<title>Popup Produits Cheveux - LH Institut</title>
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background:#0D0D0D;
-  color:#F9F9F9;
-  padding:20px;
-  text-align:center;
-}
-h1 {
-  font-family:'Playfair Display', serif;
-  color:#F6DCE6;
-  text-shadow:1px 1px 2px #C9A66B;
-  margin-bottom:20px;
-}
-p {
-  font-size:1rem;
-  color:#F9F9F9;
-  margin-bottom:30px;
-}
-button {
-  padding:10px 20px;
-  border:none;
-  border-radius:25px;
-  background:#F6DCE6;
-  color:#0D0D0D;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.3s;
-}
-button:hover {
-  background:#C9A66B;
-  box-shadow:0 0 10px #C9A66B;
-}
+body { font-family: 'Poppins', sans-serif; margin:0; padding:0; background:none; color:#000; }
+h3 { font-family:'Playfair Display', serif; color:#4B0082; margin-bottom:10px; }
+p { margin-bottom:10px; line-height:1.5; }
+ul { margin-left:20px; margin-bottom:10px; }
+.popup-description { padding:10px; }
+.popup-description strong { color:#C9A66B; }
 </style>
 </head>
 <body>
 
-<h1 id="nomProduit">Produit</h1>
-<p id="descriptionProduit">Description du produit...</p>
-<button onclick="window.close()">Fermer</button>
+<!-- Crème Xtra pousse -->
+<div id="popup_creme_content" class="popup-description">
+  <h3>Crème Xtra pousse</h3>
+  <p>Stimule la croissance de vos cheveux tout en les nourrissant en profondeur. Idéale pour des cheveux plus forts, plus brillants et en pleine santé.</p>
+  <ul>
+    <li><strong>Rôle :</strong> Accélère la pousse</li>
+    <li>Hydrate et nourrit intensément</li>
+    <li>Réduit la casse et les pointes fourchues</li>
+  </ul>
+  <p>Un indispensable pour transformer vos cheveux et révéler leur beauté naturelle. Essayez-la et voyez la différence dès les premières semaines !</p>
+</div>
 
-<script>
-// Récupérer le produit depuis l'URL
-const params = new URLSearchParams(window.location.search);
-const produit = params.get('produit');
+<!-- Huile Xtra pousse -->
+<div id="popup_huile_content" class="popup-description">
+  <h3>Huile Xtra pousse</h3>
+  <p>Une huile précieuse pour stimuler la pousse, fortifier les racines et donner brillance et douceur à vos cheveux.</p>
+  <ul>
+    <li><strong>Rôle :</strong> Nourrit en profondeur</li>
+    <li>Renforce les cheveux fragiles</li>
+    <li>Prévient la casse et les pointes sèches</li>
+  </ul>
+  <p>Transformez vos cheveux fins et cassants en une chevelure luxueuse et éclatante. Idéal pour un rituel quotidien.</p>
+</div>
 
-// Mapping des descriptions
-const descriptions = {
-  "Crème Xtra pousse": "Stimule la croissance de vos cheveux tout en les nourrissant en profondeur. Idéal pour des cheveux forts et éclatants.",
-  "Huile Xtra pousse": "Huile enrichie en actifs naturels pour renforcer vos racines et favoriser une pousse rapide et saine.",
-  "Shampoing nettoyant": "Nettoie délicatement vos cheveux tout en respectant le cuir chevelu, laissant une sensation de fraîcheur et de douceur.",
-  "Spray démêlant": "Facilite le démêlage sans casser les cheveux et apporte brillance et souplesse.",
-  "Masque démêlant": "Hydrate intensément et détend les cheveux emmêlés, idéal pour un coiffage facile.",
-  "Masque Xtra pousse": "Masque nourrissant qui stimule la croissance et redonne vitalité et éclat aux cheveux.",
-  "Masque anti âge": "Combat le vieillissement capillaire, renforce les cheveux et préserve leur jeunesse et douceur."
-};
+<!-- Shampoing nettoyant -->
+<div id="popup_shampoing_content" class="popup-description">
+  <h3>Shampoing nettoyant</h3>
+  <p>Nettoie délicatement le cuir chevelu et élimine les impuretés sans agresser vos cheveux.</p>
+  <ul>
+    <li><strong>Rôle :</strong> Purifie et prépare le cheveu</li>
+    <li>Apporte douceur et légèreté</li>
+    <li>Parfum agréable et délicat</li>
+  </ul>
+  <p>Commencez chaque routine capillaire avec un cuir chevelu sain et des cheveux éclatants de beauté.</p>
+</div>
 
-// Affichage dynamique
-document.getElementById('nomProduit').textContent = produit || "Produit";
-document.getElementById('descriptionProduit').textContent = descriptions[produit] || "Description non disponible pour ce produit.";
-</script>
+<!-- Spray démêlant -->
+<div id="popup_spray_content" class="popup-description">
+  <h3>Spray démêlant</h3>
+  <p>Facilite le démêlage tout en hydratant vos cheveux. Adieu les noeuds et les cheveux ternes !</p>
+  <ul>
+    <li><strong>Rôle :</strong> Démêle en douceur</li>
+    <li>Hydrate et protège les longueurs</li>
+    <li>Laisse un fini brillant et soyeux</li>
+  </ul>
+  <p>Parfait pour gagner du temps et transformer votre routine capillaire en un moment agréable.</p>
+</div>
+
+<!-- Masque démêlant -->
+<div id="popup_masque_dem_content" class="popup-description">
+  <h3>Masque démêlant</h3>
+  <p>Un soin intense pour cheveux emmêlés et fragiles, qui facilite le coiffage et nourrit en profondeur.</p>
+  <ul>
+    <li><strong>Rôle :</strong> Assouplit et démêle</li>
+    <li>Renforce la fibre capillaire</li>
+    <li>Apporte douceur et brillance</li>
+  </ul>
+  <p>Offrez à vos cheveux le soin qu’ils méritent et profitez d’une chevelure lisse et soyeuse.</p>
+</div>
+
+<!-- Masque Xtra pousse -->
+<div id="popup_masque_xtra_content" class="popup-description">
+  <h3>Masque Xtra pousse</h3>
+  <p>Masque riche pour booster la pousse et renforcer les cheveux de la racine aux pointes.</p>
+  <ul>
+    <li><strong>Rôle :</strong> Stimule la croissance</li>
+    <li>Fortifie et nourrit intensément</li>
+    <li>Améliore la brillance et l’élasticité</li>
+  </ul>
+  <p>Pour des cheveux longs, forts et éclatants, adoptez ce masque puissant dès aujourd’hui !</p>
+</div>
+
+<!-- Masque anti âge -->
+<div id="popup_masque_anti_content" class="popup-description">
+  <h3>Masque anti âge</h3>
+  <p>Rajeunit et revitalise les cheveux abîmés et ternes. Un soin luxueux pour une chevelure éclatante.</p>
+  <ul>
+    <li><strong>Rôle :</strong> Répare et revitalise</li>
+    <li>Hydrate profondément</li>
+    <li>Rend les cheveux souples et brillants</li>
+  </ul>
+  <p>Faites l’expérience d’un soin digne d’un institut et redonnez jeunesse et éclat à vos cheveux.</p>
+</div>
+
+<!-- Gamme Xtra pousse -->
+<div id="popup_gamme_xtra_content" class="popup-description">
+  <h3>Gamme Xtra pousse</h3>
+  <p>Un ensemble complet pour stimuler la pousse et nourrir vos cheveux en profondeur.</p>
+  <ul>
+    <li><strong>Rôle :</strong> Tout-en-un pour cheveux forts et longs</li>
+    <li>Comprend crème, huile, masque et spray</li>
+    <li>Résultats visibles rapidement</li>
+  </ul>
+  <p>Transformez votre routine capillaire avec la gamme complète Xtra Pousse et révélez une chevelure splendide !</p>
+</div>
 
 </body>
-</html>
+  </html>

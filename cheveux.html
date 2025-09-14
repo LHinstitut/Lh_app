@@ -1,351 +1,279 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Produits Cheveux - LH Institut</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Poppins', sans-serif; background:#FFFFFF; color:#000000; }
-a { text-decoration:none; color: inherit; }
-h1,h2,h3 { font-family:'Playfair Display', serif; font-weight:700; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soins Cheveux - LH Institut</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Poppins', sans-serif; background:#fff; color:#000; }
+    h1,h2,h3 { font-family:'Playfair Display', serif; }
 
-/* ===== Header ===== */
-header {
-  position: relative;
-  width:100%;
-  height:120px;
-  background: url('fond_banniere.jpg') center/cover no-repeat;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-}
-header h1 { font-size:2rem; color:#4B0082; text-shadow:0 0 10px #C9A66B,0 0 20px #FFFFFF; }
-header p { background: rgba(201,166,107,0.2); padding:3px 10px; border-radius:8px; margin-top:5px; font-weight:600; color:#4B0082; }
-header .accueil { position:absolute; top:10px; left:15px; background:#4B0082; color:#fff; padding:5px 12px; border-radius:20px; font-size:0.9rem; font-weight:600; box-shadow:0 0 5px #C9A66B; }
-header .accueil:hover { background:#C9A66B; color:#000; }
+    /* Header */
+    header {
+      position:relative;
+      width:100%;
+      height:150px;
+      background:url('fond_banniere.jpg') center/cover no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+    header h1 {
+      font-size:2.3rem;
+      color:#4B0082;
+      text-shadow:0 0 10px #C9A66B, 0 0 20px #fff;
+    }
+    header p {
+      background:rgba(201,166,107,0.2); /* fond doré clair */
+      padding:5px 15px;
+      border-radius:15px;
+      margin-top:5px;
+      color:#333;
+      font-weight:600;
+    }
+    header a {
+      position:absolute;
+      top:10px; left:15px;
+      background:#4B0082;
+      color:#fff;
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:0.9rem;
+      text-decoration:none;
+    }
 
-/* ===== Section Recherche ===== */
-.recherche {
-  text-align:center;
-  margin:30px 0 20px;
-}
-.recherche input {
-  padding:10px 15px;
-  width:90%;
-  max-width:400px;
-  border:2px solid #4B0082;
-  border-radius:8px;
-}
+    /* Produits */
+    .produits {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:20px;
+      padding:30px;
+    }
+    .produit {
+      border:1px solid #eee;
+      border-radius:15px;
+      padding:15px;
+      text-align:center;
+      background:#fafafa;
+      box-shadow:0 2px 5px rgba(0,0,0,0.05);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .produit:hover {
+      transform:translateY(-5px);
+      box-shadow:0 5px 15px rgba(201,166,107,0.4);
+    }
+    .produit img {
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:12px;
+      opacity:0.85;
+    }
+    .produit h3 {
+      margin:10px 0 5px;
+      color:#4B0082;
+    }
+    .produit .prix {
+      font-weight:600;
+      color:#C9A66B;
+      margin-bottom:10px;
+    }
+    .produit button, .produit a button {
+      background:#4B0082;
+      color:#fff;
+      border:none;
+      padding:8px 14px;
+      border-radius:20px;
+      margin:5px;
+      cursor:pointer;
+      font-size:0.9rem;
+      transition:background 0.3s ease;
+    }
+    .produit button:hover {
+      background:#C9A66B;
+    }
 
-/* ===== Produits ===== */
-.produits {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:25px;
-  padding:20px;
-}
-.produit {
-  width:300px;
-  background:#f9f0ff;
-  border:2px solid #4B0082;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 0 15px rgba(201,166,107,0.3);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  transition: transform 0.3s ease;
-}
-.produit:hover { transform:scale(1.03); }
-.produit img { width:100%; height:400px; object-fit:cover; }
-.produit h3 { margin:10px 0; color:#4B0082; }
-.produit p { font-weight:600; color:#333; margin-bottom:10px; }
-.boutons-produit {
-  display:flex;
-  gap:10px;
-  margin-bottom:15px;
-}
-.boutons-produit button, .boutons-produit a {
-  flex:1;
-  padding:10px;
-  border:none;
-  border-radius:25px;
-  font-weight:600;
-  cursor:pointer;
-  text-align:center;
-  transition:all 0.3s ease;
-}
-.boutons-produit button { background:#4B0082; color:#fff; }
-.boutons-produit button:hover { background:#C9A66B; color:#000; box-shadow:0 0 10px #C9A66B; }
-.boutons-produit a { background:#4B0082; color:#fff; line-height:30px; display:block; text-decoration:none; }
-.boutons-produit a:hover { background:#C9A66B; color:#000; box-shadow:0 0 10px #C9A66B; }
+    /* Popup */
+    .popup {
+      display:none;
+      position:fixed;
+      z-index:9999;
+      left:0; top:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.7);
+      justify-content:center;
+      align-items:center;
+    }
+    .popup-content {
+      background:#fff;
+      border-radius:15px;
+      max-width:500px;
+      padding:20px;
+      position:relative;
+      animation:fadeIn 0.4s ease;
+    }
+    .close {
+      position:absolute;
+      top:10px; right:15px;
+      font-size:1.5rem;
+      color:#4B0082;
+      cursor:pointer;
+      font-weight:bold;
+    }
+    @keyframes fadeIn {
+      from { transform:scale(0.8); opacity:0; }
+      to { transform:scale(1); opacity:1; }
+    }
 
-/* ===== Footer ===== */
-footer {
-  margin-top:40px;
-  background:#1a1a1a;
-  color:#fff;
-  text-align:center;
-  padding:20px;
-  position:relative;
-}
-footer::before {
-  content:"";
-  position:absolute;
-  top:0; left:50%;
-  transform:translateX(-50%);
-  width:90%;
-  height:2px;
-  background:#C9A66B;
-}
-footer .liens { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:15px; }
-footer a { background:#4B0082; color:#fff; padding:8px 18px; border-radius:20px; font-weight:600; transition:background 0.3s ease; }
-footer a:hover { background:#C9A66B; color:#000; }
-footer .text-links { margin-top:10px; display:flex; justify-content:center; gap:25px; flex-wrap:wrap; }
-footer .text-links a { background:none; color:#C9A66B; font-weight:600; text-decoration:underline; }
-footer .text-links a:hover { color:#fff; }
+    /* Footer */
+    footer {
+      margin-top:30px;
+      padding:20px;
+      text-align:center;
+      background:#111;
+      border-top:3px solid #C9A66B;
+      color:#fff;
+    }
+    footer a {
+      display:inline-block;
+      margin:5px 15px;
+      color:#fff;
+      font-weight:600;
+      text-decoration:none;
+      transition:color 0.3s ease;
+    }
+    footer a:hover {
+      color:#C9A66B;
+    }
 
-/* ===== Popups ===== */
-.popup-overlay {
-  position:fixed;
-  top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.5);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-.popup-content {
-  background:#fff;
-  max-width:500px;
-  width:90%;
-  padding:20px;
-  border-radius:15px;
-  position:relative;
-  color:#000;
-  text-align:left;
-}
-.popup-content h3 { color:#4B0082; margin-bottom:10px; }
-.popup-content .fermer {
-  position:absolute;
-  top:10px;
-  right:15px;
-  cursor:pointer;
-  font-size:1.2rem;
-  font-weight:700;
-  color:#C9A66B;
-}
-
-/* ===== Responsive ===== */
-@media(min-width:768px){ .produit { width:280px; } }
-@media(min-width:1024px){ .produit { width:300px; } }
-</style>
+    /* Responsive */
+    @media(max-width:600px){
+      header h1 { font-size:1.8rem; }
+      .produit img { height:150px; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <a href="index.html" class="accueil">Accueil</a>
-  <h1>LH Institut</h1>
-  <p>Produits Cheveux</p>
-</header>
+  <!-- Header -->
+  <header>
+    <a href="index.html">Accueil</a>
+    <h1>Soins Cheveux</h1>
+    <p>Des produits pensés pour nourrir, protéger et sublimer vos cheveux.</p>
+  </header>
 
-<div class="recherche">
-  <input type="text" id="recherche" placeholder="Rechercher un produit..." onkeyup="filtrerProduits()">
-</div>
+  <!-- Produits -->
+  <section class="produits">
+    <div class="produit" data-nom="Crème Xtra pousse">
+      <img src="creme.jpg" alt="Crème Xtra pousse">
+      <h3>Crème Xtra pousse</h3>
+      <p class="prix">5000 F</p>
+      <button onclick="openPopup('popup_creme')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
 
-<section class="produits">
+    <div class="produit" data-nom="Huile">
+      <img src="huile.jpg" alt="Huile capillaire">
+      <h3>Huile Capillaire</h3>
+      <p class="prix">5000 F</p>
+      <button onclick="openPopup('popup_huile')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
 
-  <!-- Produit 1 -->
-  <div class="produit" data-nom="Crème Xtra pousse">
-    <img src="creme_xtra.jpg" alt="Crème Xtra pousse">
-    <h3>Crème Xtra pousse</h3>
-    <p>5000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_creme')">Rôle</button>
-      <a href="#">Acheter</a>
+    <div class="produit" data-nom="Shampoing">
+      <img src="shampoing.jpg" alt="Shampoing">
+      <h3>Shampoing</h3>
+      <p class="prix">4000 F</p>
+      <button onclick="openPopup('popup_shampoing')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
+
+    <div class="produit" data-nom="Spray démêlant">
+      <img src="spray.jpg" alt="Spray démêlant">
+      <h3>Spray Démêlant</h3>
+      <p class="prix">4000 F</p>
+      <button onclick="openPopup('popup_spray')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
+
+    <div class="produit" data-nom="Masque démêlant">
+      <img src="masque_d.jpg" alt="Masque démêlant">
+      <h3>Masque Démêlant</h3>
+      <p class="prix">5000 F</p>
+      <button onclick="openPopup('popup_masque_demelant')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
+
+    <div class="produit" data-nom="Masque Xtra pousse">
+      <img src="masque_x.jpg" alt="Masque Xtra pousse">
+      <h3>Masque Xtra pousse</h3>
+      <p class="prix">5000 F</p>
+      <button onclick="openPopup('popup_masque_x')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
+
+    <div class="produit" data-nom="Masque anti âge">
+      <img src="masque_a.jpg" alt="Masque anti âge">
+      <h3>Masque Anti-Âge</h3>
+      <p class="prix">5000 F</p>
+      <button onclick="openPopup('popup_masque_age')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
+
+    <div class="produit" data-nom="Gamme Xtra pousse">
+      <img src="gamme.jpg" alt="Gamme Xtra pousse">
+      <h3>Gamme Xtra pousse</h3>
+      <p class="prix">25000 F</p>
+      <button onclick="openPopup('popup_gamme')">Rôle</button>
+      <a href="#"><button>Acheter</button></a>
+    </div>
+  </section>
+
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <div id="popup-body">Chargement...</div>
     </div>
   </div>
 
-  <!-- Produit 2 -->
-  <div class="produit" data-nom="Huile Xtra pousse">
-    <img src="huile_xtra.jpg" alt="Huile Xtra pousse">
-    <h3>Huile Xtra pousse</h3>
-    <p>5000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_huile')">Rôle</button>
-      <a href="#">Acheter</a>
-    </div>
-  </div>
-
-  <!-- Produit 3 -->
-  <div class="produit" data-nom="Shampoing nettoyant">
-    <img src="shampoing.jpg" alt="Shampoing nettoyant">
-    <h3>Shampoing nettoyant</h3>
-    <p>4000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_shampoing')">Rôle</button>
-      <a href="#">Acheter</a>
-    </div>
-  </div>
-
-  <!-- Produit 4 -->
-  <div class="produit" data-nom="Spray démêlant">
-    <img src="spray.jpg" alt="Spray démêlant">
-    <h3>Spray démêlant</h3>
-    <p>4000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_spray')">Rôle</button>
-      <a href="#">Acheter</a>
-    </div>
-  </div>
-
-  <!-- Produit 5 -->
-  <div class="produit" data-nom="Masque démêlant">
-    <img src="masque_dem.jpg" alt="Masque démêlant">
-    <h3>Masque démêlant</h3>
-    <p>5000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_masque_dem')">Rôle</button>
-      <a href="#">Acheter</a>
-    </div>
-  </div>
-
-  <!-- Produit 6 -->
-  <div class="produit" data-nom="Masque Xtra pousse">
-    <img src="masque_xtra.jpg" alt="Masque Xtra pousse">
-    <h3>Masque Xtra pousse</h3>
-    <p>5000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_masque_xtra')">Rôle</button>
-      <a href="#">Acheter</a>
-    </div>
-  </div>
-
-  <!-- Produit 7 -->
-  <div class="produit" data-nom="Masque anti âge">
-    <img src="masque_anti.jpg" alt="Masque anti âge">
-    <h3>Masque anti âge</h3>
-    <p>5000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_masque_anti')">Rôle</button>
-      <a href="#">Acheter</a>
-    </div>
-  </div>
-
-  <!-- Gamme Xtra pousse -->
-  <div class="produit" data-nom="Gamme Xtra pousse">
-    <img src="gamme_xtra.jpg" alt="Gamme Xtra pousse">
-    <h3>Gamme Xtra pousse</h3>
-    <p>25000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_gamme_xtra')">Rôle</button>
-      <a href="#">Acheter</a>
-    </div>
-  </div>
-
-</section>
-
-<!-- ===== Footer ===== -->
-<footer>
-  <div class="liens">
-    <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
-    <a href="mailto:ladieshouse516@gmail.com">Email</a>
-  </div>
-  <div class="text-links">
+  <!-- Footer -->
+  <footer>
     <a href="partenaire.html">Devenir partenaire</a>
     <a href="commentaire.html">Laisser un commentaire</a>
-  </div>
-  <p style="margin-top:15px; font-size:0.9rem; color:#bbb;">© 2025 LH Institut – Tous droits réservés</p>
-</footer>
+    <p>📍 Ouidah, Bénin</p>
+  </footer>
 
-<!-- ===== Popups flottants ===== -->
-<div id="popup_creme" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_creme')">&times;</span>
-    <div id="contenu_popup_creme"></div>
-  </div>
-</div>
+  <!-- Script Popup -->
+  <script>
+    function openPopup(id) {
+      fetch("popup.cheveux.html")
+        .then(res => res.text())
+        .then(data => {
+          let parser = new DOMParser();
+          let doc = parser.parseFromString(data, "text/html");
+          let content = doc.getElementById(id + "_content");
+          document.getElementById("popup-body").innerHTML = content ? content.innerHTML : "Contenu introuvable.";
+          document.getElementById("popup").style.display = "flex";
+        });
+    }
 
-<div id="popup_huile" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_huile')">&times;</span>
-    <div id="contenu_popup_huile"></div>
-  </div>
-</div>
-
-<div id="popup_shampoing" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_shampoing')">&times;</span>
-    <div id="contenu_popup_shampoing"></div>
-  </div>
-</div>
-
-<div id="popup_spray" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_spray')">&times;</span>
-    <div id="contenu_popup_spray"></div>
-  </div>
-</div>
-
-<div id="popup_masque_dem" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_masque_dem')">&times;</span>
-    <div id="contenu_popup_masque_dem"></div>
-  </div>
-</div>
-
-<div id="popup_masque_xtra" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_masque_xtra')">&times;</span>
-    <div id="contenu_popup_masque_xtra"></div>
-  </div>
-</div>
-
-<div id="popup_masque_anti" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_masque_anti')">&times;</span>
-    <div id="contenu_popup_masque_anti"></div>
-  </div>
-</div>
-
-<div id="popup_gamme_xtra" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_gamme_xtra')">&times;</span>
-    <div id="contenu_popup_gamme_xtra"></div>
-  </div>
-</div>
-
-<script>
-// ===== Filtre recherche =====
-function filtrerProduits() {
-  let input = document.getElementById('recherche').value.toLowerCase();
-  let produits = document.querySelectorAll('.produit');
-  produits.forEach(p => {
-    let nom = p.dataset.nom.toLowerCase();
-    p.style.display = nom.includes(input) ? 'flex' : 'none';
-  });
-}
-
-// ===== Popups =====
-function ouvrirPopup(id) {
-  document.getElementById(id).style.display = 'flex';
-  fetch('popup.cheveux.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('contenu_' + id.split('_')[1]).innerHTML = data;
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(".close").addEventListener("click", () => {
+        document.getElementById("popup").style.display = "none";
+      });
+      window.addEventListener("click", (e) => {
+        if (e.target.id === "popup") {
+          document.getElementById("popup").style.display = "none";
+        }
+      });
     });
-}
-
-function fermerPopup(id) {
-  document.getElementById(id).style.display = 'none';
-}
-</script>
+  </script>
 
 </body>
-  </html>
+</html>

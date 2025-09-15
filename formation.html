@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formations - LH Institut</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Poppins', sans-serif; background:#FFFFFF; color:#000000; }
+a { text-decoration:none; color: inherit; }
+h1,h2,h3 { font-family:'Playfair Display', serif; font-weight:700; }
+
+/* ===== Header ===== */
+header {
+  position: relative;
+  width:100%;
+  height:120px;
+  background: url('fond_banniere.jpg') center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+header h1 { font-size:2rem; color:#4B0082; text-shadow:0 0 10px #C9A66B,0 0 20px #FFFFFF; }
+header p { background: rgba(201,166,107,0.2); padding:3px 10px; border-radius:8px; margin-top:5px; font-weight:600; color:#4B0082; }
+header .accueil { position:absolute; top:10px; left:15px; background:#4B0082; color:#fff; padding:5px 12px; border-radius:20px; font-size:0.9rem; font-weight:600; box-shadow:0 0 5px #C9A66B; }
+header .accueil:hover { background:#C9A66B; color:#000; }
+
+/* ===== Section Recherche ===== */
+.recherche {
+  text-align:center;
+  margin:30px 0 20px;
+}
+.recherche input {
+  padding:10px 15px;
+  width:90%;
+  max-width:400px;
+  border:2px solid #4B0082;
+  border-radius:8px;
+}
+
+/* ===== Formations ===== */
+.produits {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+  padding:20px;
+}
+.produit {
+  width:300px;
+  background:#f9f0ff;
+  border:2px solid #4B0082;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 0 15px rgba(201,166,107,0.3);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  transition: transform 0.3s ease;
+}
+.produit:hover { transform:scale(1.03); }
+.produit img { width:100%; height:400px; object-fit:cover; }
+.produit h3 { margin:10px 0; color:#4B0082; text-align:center; }
+.produit p { font-weight:600; color:#333; margin-bottom:10px; text-align:center; }
+.boutons-produit {
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+.boutons-produit button, .boutons-produit a {
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:25px;
+  font-weight:600;
+  cursor:pointer;
+  text-align:center;
+  transition:all 0.3s ease;
+}
+.boutons-produit button { background:#4B0082; color:#fff; }
+.boutons-produit button:hover { background:#C9A66B; color:#000; box-shadow:0 0 10px #C9A66B; }
+.boutons-produit a { background:#4B0082; color:#fff; line-height:30px; display:block; text-decoration:none; }
+.boutons-produit a:hover { background:#C9A66B; color:#000; box-shadow:0 0 10px #C9A66B; }
+
+/* ===== Footer ===== */
+footer {
+  margin-top:40px;
+  background:#1a1a1a;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  position:relative;
+}
+footer::before {
+  content:"";
+  position:absolute;
+  top:0; left:50%;
+  transform:translateX(-50%);
+  width:90%;
+  height:2px;
+  background:#C9A66B;
+}
+footer .liens { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:15px; }
+footer a { background:#4B0082; color:#fff; padding:8px 18px; border-radius:20px; font-weight:600; transition:background 0.3s ease; }
+footer a:hover { background:#C9A66B; color:#000; }
+footer .text-links { margin-top:10px; display:flex; justify-content:center; gap:25px; flex-wrap:wrap; }
+footer .text-links a { background:none; color:#C9A66B; font-weight:600; text-decoration:underline; }
+footer .text-links a:hover { color:#fff; }
+
+/* ===== Popups ===== */
+.popup-overlay {
+  position:fixed;
+  top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.popup-content {
+  background:#fff;
+  max-width:500px;
+  width:90%;
+  padding:20px;
+  border-radius:15px;
+  position:relative;
+  color:#000;
+  text-align:left;
+}
+.popup-content h3 { color:#4B0082; margin-bottom:10px; }
+.popup-content .fermer {
+  position:absolute;
+  top:10px;
+  right:15px;
+  cursor:pointer;
+  font-size:1.2rem;
+  font-weight:700;
+  color:#C9A66B;
+}
+
+/* ===== Responsive ===== */
+@media(min-width:768px){ .produit { width:280px; } }
+@media(min-width:1024px){ .produit { width:300px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="accueil">Accueil</a>
+  <h1>LH Institut</h1>
+  <p>Nos formations en ligne</p>
+</header>
+
+<div class="recherche">
+  <input type="text" id="recherche" placeholder="Rechercher une formation..." onkeyup="filtrerProduits()">
+</div>
+
+<section class="produits">
+
+  <!-- Formation 1 -->
+  <div class="produit" data-nom="Formation en cosmétique">
+    <img src="formation_cosmetique.jpg" alt="Formation en cosmétique">
+    <h3>Formation en cosmétique</h3>
+    <p>25000f</p>
+    <div class="boutons-produit">
+      <button onclick="ouvrirPopup('popup_cosmetique')">Atout</button>
+      <a href="inscription.html">S'inscrire</a>
+    </div>
+  </div>
+
+  <!-- Formation 2 -->
+  <div class="produit" data-nom="Formation en soins capillaires">
+    <img src="formation_soins.jpg" alt="Formation en soins capillaires">
+    <h3>Formation en soins capillaires</h3>
+    <p>25000f</p>
+    <div class="boutons-produit">
+      <button onclick="ouvrirPopup('popup_soins')">Atout</button>
+      <a href="inscription.html">S'inscrire</a>
+    </div>
+  </div>
+
+  <!-- Formation 3 -->
+  <div class="produit" data-nom="Formation préparation produits rondeurs">
+    <img src="formation_rondeurs.jpg" alt="Formation préparation produits rondeurs">
+    <h3>Formation préparation produits rondeurs</h3>
+    <p>25000f</p>
+    <div class="boutons-produit">
+      <button onclick="ouvrirPopup('popup_rondeurs')">Atout</button>
+      <a href="inscription.html">S'inscrire</a>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="liens">
+    <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+    <a href="mailto:ladieshouse516@gmail.com">Email</a>
+  </div>
+  <div class="text-links">
+    <a href="partenaire.html">Devenir partenaire</a>
+    <a href="commentaire.html">Laisser un commentaire</a>
+  </div>
+  <p style="margin-top:15px; font-size:0.9rem; color:#bbb;">© 2025 LH Institut – Tous droits réservés</p>
+</footer>
+
+<!-- ===== Popups flottants ===== -->
+<div id="popup_cosmetique" class="popup-overlay">
+  <div class="popup-content">
+    <span class="fermer" onclick="fermerPopup('popup_cosmetique')">&times;</span>
+    <div id="contenu_cosmetique"></div>
+  </div>
+</div>
+
+<div id="popup_soins" class="popup-overlay">
+  <div class="popup-content">
+    <span class="fermer" onclick="fermerPopup('popup_soins')">&times;</span>
+    <div id="contenu_soins"></div>
+  </div>
+</div>
+
+<div id="popup_rondeurs" class="popup-overlay">
+  <div class="popup-content">
+    <span class="fermer" onclick="fermerPopup('popup_rondeurs')">&times;</span>
+    <div id="contenu_rondeurs"></div>
+  </div>
+</div>
+
+<script>
+// ===== Filtre recherche =====
+function filtrerProduits() {
+  let input = document.getElementById('recherche').value.toLowerCase();
+  let produits = document.querySelectorAll('.produit');
+  produits.forEach(p => {
+    let nom = p.dataset.nom.toLowerCase();
+    p.style.display = nom.includes(input) ? 'flex' : 'none';
+  });
+}
+
+// ===== Popups =====
+function ouvrirPopup(id) {
+  document.getElementById(id).style.display = 'flex';
+  fetch('popup.formation.html')
+    .then(response => response.text())
+    .then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, 'text/html');
+      const contenu = doc.getElementById(id.split('_')[1]);
+      if(contenu) {
+        document.getElementById('contenu_' + id.split('_')[1]).innerHTML = contenu.innerHTML;
+      } else {
+        document.getElementById('contenu_' + id.split('_')[1]).innerHTML = 'Description non disponible.';
+      }
+    });
+}
+
+function fermerPopup(id) {
+  document.getElementById(id).style.display = 'none';
+}
+</script>
+
+</body>
+  </html>

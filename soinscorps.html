@@ -152,7 +152,7 @@ footer .text-links a:hover { color:#fff; }
 <header>
   <a href="index.html" class="accueil">Accueil</a>
   <h1>LH Institut</h1>
-  <p>Soin parfumé</p>
+  <p>Soin Parfumé</p>
 </header>
 
 <div class="recherche">
@@ -230,7 +230,12 @@ function ouvrirPopup(id) {
   fetch('popup.soin.html')
     .then(response => response.text())
     .then(data => {
-      document.getElementById('contenu_' + id.split('_')[1]).innerHTML = data;
+      let temp = document.createElement('div');
+      temp.innerHTML = data;
+      let contenu = temp.querySelector('#contenu_' + id.split('_')[1]);
+      if(contenu) {
+        document.getElementById('contenu_' + id.split('_')[1]).innerHTML = contenu.innerHTML;
+      }
     });
 }
 

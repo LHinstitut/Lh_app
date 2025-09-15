@@ -202,14 +202,14 @@ footer .text-links a:hover { color:#fff; }
 <div id="popup_serum" class="popup-overlay">
   <div class="popup-content">
     <span class="fermer" onclick="fermerPopup('popup_serum')">&times;</span>
-    <div id="contenu_popup_serum"></div>
+    <div id="contenu_serum"></div>
   </div>
 </div>
 
 <div id="popup_bouche" class="popup-overlay">
   <div class="popup-content">
     <span class="fermer" onclick="fermerPopup('popup_bouche')">&times;</span>
-    <div id="contenu_popup_bouche"></div>
+    <div id="contenu_bouche"></div>
   </div>
 </div>
 
@@ -230,9 +230,11 @@ function ouvrirPopup(id) {
   fetch('popup.soin.html')
     .then(response => response.text())
     .then(data => {
-      let temp = document.createElement('div');
-      temp.innerHTML = data;
-      let contenu = temp.querySelector('#contenu_' + id.split('_')[1]);
+      // Crée un conteneur temporaire
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = data;
+      // Récupère le contenu correspondant à l'ID du popup
+      const contenu = tempDiv.querySelector('#' + 'contenu_' + id.split('_')[1]);
       if(contenu) {
         document.getElementById('contenu_' + id.split('_')[1]).innerHTML = contenu.innerHTML;
       }

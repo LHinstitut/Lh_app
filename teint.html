@@ -1,314 +1,251 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Produits Teint - LH Institut</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Poppins', sans-serif; background:#FFFFFF; color:#000000; }
-a { text-decoration:none; color: inherit; }
-h1,h2,h3 { font-family:'Playfair Display', serif; font-weight:700; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LH Institut - Teint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Poppins', sans-serif; background:#fff; color:#333; }
+    a { text-decoration:none; color: inherit; }
+    h1, h2 { font-family:'Playfair Display', serif; }
 
-/* ===== Header ===== */
-header {
-  position: relative;
-  width:100%;
-  height:120px;
-  background: url('fond_banniere.jpg') center/cover no-repeat;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-}
-header h1 { font-size:2rem; color:#4B0082; text-shadow:0 0 10px #C9A66B,0 0 20px #FFFFFF; }
-header p { background: rgba(201,166,107,0.2); padding:3px 10px; border-radius:8px; margin-top:5px; font-weight:600; color:#4B0082; }
-header .accueil { position:absolute; top:10px; left:15px; background:#4B0082; color:#fff; padding:5px 12px; border-radius:20px; font-size:0.9rem; font-weight:600; box-shadow:0 0 5px #C9A66B; }
-header .accueil:hover { background:#C9A66B; color:#000; }
+    header {
+      position: relative;
+      width:100%;
+      height:120px;
+      background: url('fond_banniere.jpg') center/cover no-repeat;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      overflow:hidden;
+    }
+    header::after {
+      content:"";
+      position:absolute;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.4);
+    }
+    header h1, header p {
+      position:relative;
+      z-index:1;
+    }
+    header h1 {
+      font-size:2rem;
+      font-weight:700;
+      color:#fff;
+      text-shadow: 1px 1px 3px gold;
+    }
+    header p {
+      font-size:1rem;
+      margin-top:5px;
+    }
 
-/* ===== Section Recherche ===== */
-.recherche {
-  text-align:center;
-  margin:30px 0 20px;
-}
-.recherche input {
-  padding:10px 15px;
-  width:90%;
-  max-width:400px;
-  border:2px solid #4B0082;
-  border-radius:8px;
-}
+    .produits {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+      gap:20px;
+      padding:30px;
+    }
+    .carte {
+      border-radius:15px;
+      overflow:hidden;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+      background:#fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .carte:hover {
+      transform:scale(1.03);
+      box-shadow:0 0 20px rgba(0,0,0,0.2);
+    }
+    .carte img {
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+    .carte-content {
+      padding:15px;
+      text-align:center;
+    }
+    .carte-content h3 {
+      font-size:1.2rem;
+      margin-bottom:10px;
+      color:#2e2a5e;
+    }
+    .carte-content p {
+      margin-bottom:10px;
+      font-weight:600;
+      color:#000;
+    }
+    .carte-content button {
+      padding:8px 15px;
+      margin:5px;
+      border:none;
+      border-radius:20px;
+      cursor:pointer;
+      font-weight:600;
+      background:linear-gradient(45deg,#2e2a5e,#c9a66b);
+      color:#fff;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .carte-content button:hover {
+      transform:scale(1.05);
+    }
 
-/* ===== Produits ===== */
-.produits {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:25px;
-  padding:20px;
-}
-.produit {
-  width:300px;
-  background:#f9f0ff;
-  border:2px solid #4B0082;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 0 15px rgba(201,166,107,0.3);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  transition: transform 0.3s ease;
-}
-.produit:hover { transform:scale(1.03); }
-.produit img { width:100%; height:400px; object-fit:cover; }
-.produit h3 { margin:10px 0; color:#4B0082; }
-.produit p { font-weight:600; color:#333; margin-bottom:10px; }
-.boutons-produit {
-  display:flex;
-  gap:10px;
-  margin-bottom:15px;
-}
-.boutons-produit button, .boutons-produit a {
-  flex:1;
-  padding:10px;
-  border:none;
-  border-radius:25px;
-  font-weight:600;
-  cursor:pointer;
-  text-align:center;
-  transition:all 0.3s ease;
-}
-.boutons-produit button { background:#4B0082; color:#fff; }
-.boutons-produit button:hover { background:#C9A66B; color:#000; box-shadow:0 0 10px #C9A66B; }
-.boutons-produit a { background:#4B0082; color:#fff; line-height:30px; display:block; text-decoration:none; }
-.boutons-produit a:hover { background:#C9A66B; color:#000; box-shadow:0 0 10px #C9A66B; }
+    .popup {
+      display:none;
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      justify-content:center;
+      align-items:center;
+      z-index:1000;
+    }
+    .popup-content {
+      background:#fff;
+      padding:20px;
+      border-radius:15px;
+      width:90%;
+      max-width:500px;
+      text-align:center;
+      position:relative;
+    }
+    .popup-content h3 {
+      margin-bottom:10px;
+      color:#2e2a5e;
+    }
+    .popup-content p {
+      margin-bottom:15px;
+      color:#333;
+    }
+    .close {
+      position:absolute;
+      top:10px;
+      right:15px;
+      font-size:20px;
+      cursor:pointer;
+      color:#000;
+    }
 
-/* ===== Footer ===== */
-footer {
-  margin-top:40px;
-  background:#1a1a1a;
-  color:#fff;
-  text-align:center;
-  padding:20px;
-  position:relative;
-}
-footer::before {
-  content:"";
-  position:absolute;
-  top:0; left:50%;
-  transform:translateX(-50%);
-  width:90%;
-  height:2px;
-  background:#C9A66B;
-}
-footer .liens { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:15px; }
-footer a { background:#4B0082; color:#fff; padding:8px 18px; border-radius:20px; font-weight:600; transition:background 0.3s ease; }
-footer a:hover { background:#C9A66B; color:#000; }
-footer .text-links { margin-top:10px; display:flex; justify-content:center; gap:25px; flex-wrap:wrap; }
-footer .text-links a { background:none; color:#C9A66B; font-weight:600; text-decoration:underline; }
-footer .text-links a:hover { color:#fff; }
-
-/* ===== Popups ===== */
-.popup-overlay {
-  position:fixed;
-  top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.5);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-.popup-content {
-  background:#fff;
-  max-width:500px;
-  width:90%;
-  padding:20px;
-  border-radius:15px;
-  position:relative;
-  color:#000;
-  text-align:left;
-}
-.popup-content h3 { color:#4B0082; margin-bottom:10px; }
-.popup-content .fermer {
-  position:absolute;
-  top:10px;
-  right:15px;
-  cursor:pointer;
-  font-size:1.2rem;
-  font-weight:700;
-  color:#C9A66B;
-}
-
-/* ===== Responsive ===== */
-@media(min-width:768px){ .produit { width:280px; } }
-@media(min-width:1024px){ .produit { width:300px; } }
-</style>
+    footer {
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      padding:20px;
+      background:#121212;
+    }
+    footer a {
+      background:linear-gradient(45deg,#2e2a5e,#c9a66b);
+      color:#fff;
+      padding:10px 20px;
+      border-radius:25px;
+      font-weight:600;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    footer a:hover {
+      box-shadow: 0 0 10px gold;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="accueil">Accueil</a>
-  <h1>LH Institut</h1>
-  <p>Produits Teint</p>
+  <a href="index.html"><h1>LH Institut</h1></a>
+  <p>Éclat et harmonie pour votre teint</p>
 </header>
 
-<div class="recherche">
-  <input type="text" id="recherche" placeholder="Rechercher un produit..." onkeyup="filtrerProduits()">
-</div>
-
 <section class="produits">
-
-  <!-- Produit 1 -->
-  <div class="produit" data-nom="Kit teint clair">
-    <img src="kit_clair.jpg" alt="Kit teint clair">
-    <h3>Kit teint clair</h3>
-    <p>15000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_clair')">Rôle</button>
-      <a href="#">Acheter</a>
+  <div class="carte">
+    <img src="teint_clair.jpg" alt="Kit teint clair">
+    <div class="carte-content">
+      <h3>Kit teint clair</h3>
+      <p>15 000 F</p>
+      <button onclick="ouvrirPopup('clair')">Rôle</button>
+      <button>Acheter</button>
     </div>
   </div>
-
-  <!-- Produit 2 -->
-  <div class="produit" data-nom="Kit teint marron clair">
-    <img src="kit_marron.jpg" alt="Kit teint marron clair">
-    <h3>Kit teint marron clair</h3>
-    <p>15000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_marron')">Rôle</button>
-      <a href="#">Acheter</a>
+  <div class="carte">
+    <img src="teint_marron.jpg" alt="Kit teint marron clair">
+    <div class="carte-content">
+      <h3>Kit teint marron clair</h3>
+      <p>15 000 F</p>
+      <button onclick="ouvrirPopup('marron')">Rôle</button>
+      <button>Acheter</button>
     </div>
   </div>
-
-  <!-- Produit 3 -->
-  <div class="produit" data-nom="Gommage anti tâches">
+  <div class="carte">
     <img src="gommage_taches.jpg" alt="Gommage anti tâches">
-    <h3>Gommage anti tâches</h3>
-    <p>10000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_gommage_taches')">Rôle</button>
-      <a href="#">Acheter</a>
+    <div class="carte-content">
+      <h3>Gommage anti tâches</h3>
+      <p>10 000 F</p>
+      <button onclick="ouvrirPopup('gommage_taches')">Rôle</button>
+      <button>Acheter</button>
     </div>
   </div>
-
-  <!-- Produit 4 -->
-  <div class="produit" data-nom="Duo anti tâches">
+  <div class="carte">
     <img src="duo_taches.jpg" alt="Duo anti tâches">
-    <h3>Duo anti tâches</h3>
-    <p>8000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_duo')">Rôle</button>
-      <a href="#">Acheter</a>
+    <div class="carte-content">
+      <h3>Duo anti tâches</h3>
+      <p>8 000 F</p>
+      <button onclick="ouvrirPopup('duo')">Rôle</button>
+      <button>Acheter</button>
     </div>
   </div>
-
-  <!-- Produit 5 -->
-  <div class="produit" data-nom="Gommage anti vergetures">
+  <div class="carte">
     <img src="gommage_vergetures.jpg" alt="Gommage anti vergetures">
-    <h3>Gommage anti vergetures</h3>
-    <p>8000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_vergetures')">Rôle</button>
-      <a href="#">Acheter</a>
+    <div class="carte-content">
+      <h3>Gommage anti vergetures</h3>
+      <p>8 000 F</p>
+      <button onclick="ouvrirPopup('vergetures')">Rôle</button>
+      <button>Acheter</button>
     </div>
   </div>
-
-  <!-- Produit 6 -->
-  <div class="produit" data-nom="Gamme teint marron clair">
+  <div class="carte">
     <img src="gamme_marron.jpg" alt="Gamme teint marron clair">
-    <h3>Gamme teint marron clair</h3>
-    <p>35000f</p>
-    <div class="boutons-produit">
-      <button onclick="ouvrirPopup('popup_gamme_marron')">Rôle</button>
-      <a href="#">Acheter</a>
+    <div class="carte-content">
+      <h3>Gamme teint marron clair</h3>
+      <p>35 000 F</p>
+      <button onclick="ouvrirPopup('gamme_marron')">Rôle</button>
+      <button>Acheter</button>
     </div>
   </div>
-
 </section>
 
-<!-- ===== Footer ===== -->
+<!-- Popups -->
+<div id="popup_clair" class="popup"><div class="popup-content"><span class="close" onclick="fermerPopup('clair')">&times;</span><div id="contenu_clair"></div></div></div>
+<div id="popup_marron" class="popup"><div class="popup-content"><span class="close" onclick="fermerPopup('marron')">&times;</span><div id="contenu_marron"></div></div></div>
+<div id="popup_gommage_taches" class="popup"><div class="popup-content"><span class="close" onclick="fermerPopup('gommage_taches')">&times;</span><div id="contenu_gommage_taches"></div></div></div>
+<div id="popup_duo" class="popup"><div class="popup-content"><span class="close" onclick="fermerPopup('duo')">&times;</span><div id="contenu_duo"></div></div></div>
+<div id="popup_vergetures" class="popup"><div class="popup-content"><span class="close" onclick="fermerPopup('vergetures')">&times;</span><div id="contenu_vergetures"></div></div></div>
+<div id="popup_gamme_marron" class="popup"><div class="popup-content"><span class="close" onclick="fermerPopup('gamme_marron')">&times;</span><div id="contenu_gamme_marron"></div></div></div>
+
 <footer>
-  <div class="liens">
-    <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
-    <a href="mailto:ladieshouse516@gmail.com">Email</a>
-  </div>
-  <div class="text-links">
-    <a href="partenaire.html">Devenir partenaire</a>
-    <a href="commentaire.html">Laisser un commentaire</a>
-  </div>
-  <p style="margin-top:15px; font-size:0.9rem; color:#bbb;">© 2025 LH Institut – Tous droits réservés</p>
+  <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+  <a href="mailto:ladieshouse516@gmail.com">Email</a>
 </footer>
 
-<!-- ===== Popups flottants ===== -->
-<div id="popup_clair" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_clair')">&times;</span>
-    <div id="contenu_popup_clair"></div>
-  </div>
-</div>
-
-<div id="popup_marron" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_marron')">&times;</span>
-    <div id="contenu_popup_marron"></div>
-  </div>
-</div>
-
-<div id="popup_gommage_taches" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_gommage_taches')">&times;</span>
-    <div id="contenu_popup_gommage_taches"></div>
-  </div>
-</div>
-
-<div id="popup_duo" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_duo')">&times;</span>
-    <div id="contenu_popup_duo"></div>
-  </div>
-</div>
-
-<div id="popup_vergetures" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_vergetures')">&times;</span>
-    <div id="contenu_popup_vergetures"></div>
-  </div>
-</div>
-
-<div id="popup_gamme_marron" class="popup-overlay">
-  <div class="popup-content">
-    <span class="fermer" onclick="fermerPopup('popup_gamme_marron')">&times;</span>
-    <div id="contenu_popup_gamme_marron"></div>
-  </div>
-</div>
-
 <script>
-// ===== Filtre recherche =====
-function filtrerProduits() {
-  let input = document.getElementById('recherche').value.toLowerCase();
-  let produits = document.querySelectorAll('.produit');
-  produits.forEach(p => {
-    let nom = p.dataset.nom.toLowerCase();
-    p.style.display = nom.includes(input) ? 'flex' : 'none';
-  });
-}
-
-// ===== Popups =====
-function ouvrirPopup(id) {
-  document.getElementById(id).style.display = 'flex';
-  fetch('popup.teint.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('contenu_' + id.split('_')[1]).innerHTML = data;
-    });
-}
-
-function fermerPopup(id) {
-  document.getElementById(id).style.display = 'none';
-}
+  function ouvrirPopup(id) {
+    document.getElementById('popup_' + id).style.display = 'flex';
+    fetch('popup.teint.html')
+      .then(response => response.text())
+      .then(data => {
+        let parser = new DOMParser();
+        let htmlDoc = parser.parseFromString(data, 'text/html');
+        let contenu = htmlDoc.getElementById('popup_contenu_' + id);
+        if (contenu) {
+          document.getElementById('contenu_' + id).innerHTML = contenu.innerHTML;
+        }
+      });
+  }
+  function fermerPopup(id) {
+    document.getElementById('popup_' + id).style.display = 'none';
+  }
 </script>
 
 </body>

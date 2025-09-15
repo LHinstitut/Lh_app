@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astuces Beauté - LH Institut</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Poppins', sans-serif; background:#FFFFFF; color:#000000; }
+a { text-decoration:none; color: inherit; }
+h1,h2,h3 { font-family:'Playfair Display', serif; font-weight:700; }
+
+/* ===== Header ===== */
+header {
+  position: relative;
+  width:100%;
+  height:120px;
+  background: url('fond_banniere.jpg') center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+header h1 { font-size:2rem; color:#4B0082; text-shadow:0 0 10px #C9A66B,0 0 20px #FFFFFF; }
+header p { background: rgba(201,166,107,0.2); padding:3px 10px; border-radius:8px; margin-top:5px; font-weight:600; color:#4B0082; }
+header .accueil { position:absolute; top:10px; left:15px; background:#4B0082; color:#fff; padding:5px 12px; border-radius:20px; font-size:0.9rem; font-weight:600; box-shadow:0 0 5px #C9A66B; }
+header .accueil:hover { background:#C9A66B; color:#000; }
+
+/* ===== Section Astuces ===== */
+.astuces {
+  padding:30px 20px;
+  max-width:900px;
+  margin:0 auto;
+}
+.astuce {
+  background:#f9f0ff;
+  border:2px solid #4B0082;
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:25px;
+  box-shadow:0 0 10px rgba(201,166,107,0.2);
+}
+.astuce h3 { color:#4B0082; margin-bottom:10px; }
+.astuce p { margin-bottom:8px; line-height:1.6; }
+
+/* ===== Bouton ingrédients ===== */
+.btn-ingredients {
+  display:block;
+  width:max-content;
+  margin:30px auto;
+  padding:12px 25px;
+  background:#4B0082;
+  color:#fff;
+  border-radius:25px;
+  font-weight:600;
+  font-size:1rem;
+  transition:all 0.3s ease;
+  text-align:center;
+}
+.btn-ingredients:hover {
+  background:#C9A66B;
+  color:#000;
+  box-shadow:0 0 12px #C9A66B;
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top:40px;
+  background:#1a1a1a;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  position:relative;
+}
+footer::before {
+  content:"";
+  position:absolute;
+  top:0; left:50%;
+  transform:translateX(-50%);
+  width:90%;
+  height:2px;
+  background:#C9A66B;
+}
+footer .liens { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:15px; }
+footer a { background:#4B0082; color:#fff; padding:8px 18px; border-radius:20px; font-weight:600; transition:background 0.3s ease; }
+footer a:hover { background:#C9A66B; color:#000; }
+footer .text-links { margin-top:10px; display:flex; justify-content:center; gap:25px; flex-wrap:wrap; }
+footer .text-links a { background:none; color:#C9A66B; font-weight:600; text-decoration:underline; }
+footer .text-links a:hover { color:#fff; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="accueil">Accueil</a>
+  <h1>LH Institut</h1>
+  <p>Astuces beauté & bien-être</p>
+</header>
+
+<section class="astuces">
+  <div class="astuce">
+    <h3>✨ Gommage corps maison</h3>
+    <p><strong>Ingrédients :</strong> Sucre, miel, huile de coco.</p>
+    <p>Mélangez et massez doucement sous la douche pour une peau douce et éclatante.</p>
+  </div>
+
+  <div class="astuce">
+    <h3>🔥 Booster la libido naturellement</h3>
+    <p><strong>Ingrédients :</strong> Poudre de maca, lait chaud, miel.</p>
+    <p>Une boisson simple qui aide à stimuler l’énergie et la vitalité.</p>
+  </div>
+
+  <div class="astuce">
+    <h3>🌸 Masque éclat visage</h3>
+    <p><strong>Ingrédients :</strong> Yaourt nature, curcuma, miel.</p>
+    <p>Appliquez 15 minutes puis rincez pour un teint lumineux et unifié.</p>
+  </div>
+
+  <div class="astuce">
+    <h3>💧 Cheveux brillants et forts</h3>
+    <p><strong>Ingrédients :</strong> Huile d’olive, avocat, jaune d’œuf.</p>
+    <p>Un masque nourrissant à appliquer 30 min avant le shampoing.</p>
+  </div>
+
+  <div class="astuce">
+    <h3>🍋 Detox du matin</h3>
+    <p><strong>Ingrédients :</strong> Eau tiède, jus de citron, gingembre râpé.</p>
+    <p>Boire à jeun pour stimuler la digestion et purifier l’organisme.</p>
+  </div>
+</section>
+
+<a href="ingredients.html" class="btn-ingredients">🌿 Trouver les ingrédients</a>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="liens">
+    <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+    <a href="mailto:ladieshouse516@gmail.com">Email</a>
+  </div>
+  <div class="text-links">
+    <a href="partenaire.html">Devenir partenaire</a>
+    <a href="commentaire.html">Laisser un commentaire</a>
+  </div>
+  <p style="margin-top:15px; font-size:0.9rem; color:#bbb;">© 2025 LH Institut – Tous droits réservés</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription réussie - LH Institut</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#FFFFFF;color:#000;}
+a{text-decoration:none;color:inherit;}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700;}
+
+/* ===== Header ===== */
+header{
+  position:relative;width:100%;height:120px;
+  background:url('fond_banniere.jpg') center/cover no-repeat;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
+header h1{font-size:2rem;color:#4B0082;text-shadow:0 0 10px #C9A66B,0 0 20px #FFFFFF;}
+header p{background:rgba(201,166,107,0.2);padding:3px 10px;border-radius:8px;margin-top:5px;font-weight:600;color:#4B0082;}
+header .accueil{position:absolute;top:10px;left:15px;background:#4B0082;color:#fff;padding:5px 12px;border-radius:20px;font-size:0.9rem;font-weight:600;box-shadow:0 0 5px #C9A66B;}
+header .accueil:hover{background:#C9A66B;color:#000;}
+
+/* ===== Message principal ===== */
+.main{
+  max-width:700px;margin:40px auto;padding:20px;text-align:center;
+}
+.main h2{color:#4B0082;margin-bottom:15px;}
+.main p{margin:12px 0;font-size:1.1rem;line-height:1.6;}
+.btn-conditions{
+  display:inline-block;
+  margin-top:20px;padding:12px 25px;
+  background:#4B0082;color:#fff;
+  border-radius:25px;font-weight:600;
+  transition:all 0.3s ease;
+}
+.btn-conditions:hover{background:#C9A66B;color:#000;box-shadow:0 0 10px #C9A66B;}
+
+/* ===== Footer ===== */
+footer{
+  margin-top:40px;background:#1a1a1a;color:#fff;text-align:center;padding:20px;position:relative;
+}
+footer::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:90%;height:2px;background:#C9A66B;
+}
+footer .liens{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:15px;}
+footer a{background:#4B0082;color:#fff;padding:8px 18px;border-radius:20px;font-weight:600;transition:background 0.3s ease;}
+footer a:hover{background:#C9A66B;color:#000;}
+footer .text-links{margin-top:10px;display:flex;justify-content:center;gap:25px;flex-wrap:wrap;}
+footer .text-links a{background:none;color:#C9A66B;font-weight:600;text-decoration:underline;}
+footer .text-links a:hover{color:#fff;}
+
+/* ===== Popup Conditions ===== */
+.popup-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;justify-content:center;align-items:center;z-index:9999;
+}
+.popup-content{
+  background:#fff;max-width:700px;width:90%;padding:25px;
+  border-radius:15px;position:relative;color:#000;text-align:left;
+  box-shadow:0 0 15px rgba(201,166,107,0.3);max-height:90vh;overflow-y:auto;
+}
+.popup-content h3{color:#4B0082;margin-bottom:10px;}
+.popup-content .fermer{position:absolute;top:10px;right:15px;cursor:pointer;font-size:1.5rem;font-weight:700;color:#C9A66B;}
+.popup-content ul{margin:15px 0 0 20px;list-style:disc;}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="accueil">Accueil</a>
+  <h1>LH Institut</h1>
+  <p>Bienvenue partenaire</p>
+</header>
+
+<div class="main">
+  <h2>🎉 Félicitations ! Votre inscription est réussie</h2>
+  <p>Merci d’avoir rejoint le programme partenaires LH Institut 💎.</p>
+  <p>D’ici peu, vous recevrez un message contenant votre <strong>code promo personnel</strong> ainsi que toutes les informations nécessaires pour commencer à gagner avec nous.</p>
+  <p>En attendant, prenez le temps de lire nos conditions d’utilisation afin de mieux comprendre vos avantages et vos responsabilités.</p>
+  <a href="#" class="btn-conditions" onclick="ouvrirPopup()">Voir les conditions</a>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="liens">
+    <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+    <a href="mailto:ladieshouse516@gmail.com">Email</a>
+  </div>
+  <div class="text-links">
+    <a href="partenaire.html">Devenir partenaire</a>
+    <a href="commentaire.html">Laisser un commentaire</a>
+  </div>
+  <p style="margin-top:15px;font-size:0.9rem;color:#bbb;">© 2025 LH Institut – Tous droits réservés</p>
+</footer>
+
+<!-- ===== Popup Conditions ===== -->
+<div id="popup" class="popup-overlay">
+  <div class="popup-content">
+    <span class="fermer" onclick="fermerPopup()">&times;</span>
+    <h3>Conditions d’utilisation – Partenaires LH Institut</h3>
+    <p>En rejoignant notre programme d’affiliation, vous acceptez les règles suivantes :</p>
+    <ul>
+      <li>Utiliser votre code promo uniquement dans un cadre légal et honnête.</li>
+      <li>Ne pas diffuser de fausses informations ou d’images trompeuses pour promouvoir nos produits.</li>
+      <li>Respecter la confidentialité des informations que nous vous transmettons.</li>
+      <li>Vos gains seront calculés en fonction des ventes validées grâce à votre code promo.</li>
+    </ul>
+    <h3>Risques et sanctions ⚠️</h3>
+    <ul>
+      <li>En cas de fraude, manipulation ou non-respect des règles, votre code sera suspendu immédiatement.</li>
+      <li>Les commissions acquises de manière frauduleuse ne seront pas versées.</li>
+      <li>Nous nous réservons le droit de mettre fin à un partenariat en cas de comportements contraires à l’éthique.</li>
+    </ul>
+    <p style="margin-top:10px;font-weight:600;">👉 Respectez les règles, gagnez en toute confiance et profitez de votre partenariat avec LH Institut 💜.</p>
+  </div>
+</div>
+
+<script>
+function ouvrirPopup(){
+  document.getElementById("popup").style.display="flex";
+}
+function fermerPopup(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+</body>
+  </html>

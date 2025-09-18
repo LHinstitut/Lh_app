@@ -17,12 +17,9 @@ header {
   width:100%;
   height:120px;
   background: url('fond_banniere.jpg') center/cover no-repeat;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; overflow:hidden;
 }
 header h1 { font-size:2rem; color:#4B0082; text-shadow:0 0 10px #C9A66B,0 0 20px #FFFFFF; }
 header p { background: rgba(201,166,107,0.2); padding:3px 10px; border-radius:8px; margin-top:5px; font-weight:600; color:#4B0082; }
@@ -40,11 +37,7 @@ section h2 { color:#4B0082; margin-bottom:15px; }
 section p { font-size:1rem; margin-bottom:25px; }
 
 /* ===== Formulaire ===== */
-form {
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
+form { display:flex; flex-direction:column; gap:15px; }
 input, select, textarea {
   padding:12px;
   border:2px solid #4B0082;
@@ -55,41 +48,45 @@ input, select, textarea {
 }
 textarea { resize:vertical; min-height:80px; }
 button {
-  background:#4B0082;
-  color:#fff;
-  padding:12px;
-  border:none;
-  border-radius:25px;
-  font-weight:600;
-  cursor:pointer;
-  transition:all 0.3s ease;
+  background:#4B0082; color:#fff;
+  padding:12px; border:none;
+  border-radius:25px; font-weight:600;
+  cursor:pointer; transition:all 0.3s ease;
 }
 button:hover { background:#C9A66B; color:#000; box-shadow:0 0 10px #C9A66B; }
 
-/* ===== Footer ===== */
-footer {
-  margin-top:50px;
-  background:#1a1a1a;
-  color:#fff;
-  text-align:center;
-  padding:20px;
-  position:relative;
+/* ===== Tooltip (popup cliquable) ===== */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: #4B0082;
+  font-weight: bold;
+  margin-left: 5px;
+  font-size:1.2rem;
 }
-footer::before {
-  content:"";
+.tooltip-popup {
+  display:none;
   position:absolute;
-  top:0; left:50%;
+  bottom:130%;
+  left:50%;
   transform:translateX(-50%);
-  width:90%;
-  height:2px;
-  background:#C9A66B;
+  width:240px;
+  background:#4B0082;
+  color:#fff;
+  padding:12px;
+  border-radius:10px;
+  box-shadow:0 0 8px rgba(0,0,0,0.3);
+  font-size:0.9rem;
+  z-index:10;
 }
-footer .liens { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:15px; }
-footer a { background:#4B0082; color:#fff; padding:8px 18px; border-radius:20px; font-weight:600; transition:background 0.3s ease; }
-footer a:hover { background:#C9A66B; color:#000; }
-footer .text-links { margin-top:10px; display:flex; justify-content:center; gap:25px; flex-wrap:wrap; }
-footer .text-links a { background:none; color:#C9A66B; font-weight:600; text-decoration:underline; }
-footer .text-links a:hover { color:#fff; }
+.tooltip-popup .close {
+  position:absolute;
+  top:5px; right:8px;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -127,6 +124,20 @@ footer .text-links a:hover { color:#fff; }
       <option>Autre</option>
     </select>
 
+    <!-- Section Code Promo (optionnelle) -->
+    <p style="text-align:left; font-size:0.9rem; color:#4B0082; margin-top:10px;">
+      💡 Si vous avez un <b>code promo</b>, vous pouvez le mettre ci-dessous.
+    </p>
+    <div style="display:flex; align-items:center; gap:8px; position:relative;">
+      <input type="text" name="Code promo" placeholder="Entrez votre code promo (facultatif)" style="flex:1;">
+      <div class="tooltip">❓
+        <div class="tooltip-popup" id="promoInfo">
+          <span class="close" onclick="document.getElementById('promoInfo').style.display='none'">✖</span>
+          Le reversement signifie que vous recevez une petite somme d’argent (comme une réduction) après votre achat 🎁
+        </div>
+      </div>
+    </div>
+
     <textarea name="Remarque" placeholder="Instructions ou remarques supplémentaires..."></textarea>
 
     <button type="submit">📩 Envoyer mes informations</button>
@@ -144,6 +155,14 @@ footer .text-links a:hover { color:#fff; }
   </div>
   <p style="margin-top:15px; font-size:0.9rem; color:#bbb;">© 2025 LH Institut – Tous droits réservés</p>
 </footer>
+
+<script>
+  // Affichage/fermeture du popup code promo
+  document.querySelector('.tooltip').addEventListener('click', function() {
+    const popup = document.getElementById('promoInfo');
+    popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+  });
+</script>
 
 </body>
 </html>

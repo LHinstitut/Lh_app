@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact – LH Institut</title>
+
+<!-- Polices -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --violet:#4B0082;
+  --muted:#666;
+  --gold:#C9A66B;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+body{background:#fff;color:#111;line-height:1.5}
+header{background:linear-gradient(90deg,#4B0082,#6A2DBD);padding:50px 20px;text-align:center;color:#fff}
+header h1{font-family:'Playfair Display',serif;font-size:2.2rem}
+header p{opacity:0.9;margin-top:8px}
+main{padding:30px 20px;max-width:700px;margin:auto;text-align:center}
+.contact-buttons{display:flex;flex-direction:column;gap:18px;margin-top:30px}
+.contact-buttons a{display:block;padding:14px;font-size:1rem;font-weight:600;color:#fff;border-radius:12px;text-decoration:none;transition:transform 0.15s ease}
+.contact-buttons a:hover{transform:scale(1.05)}
+.btn-facebook{background:#1877f2}
+.btn-whatsapp{background:#25d366}
+.btn-instagram{background:linear-gradient(45deg,#f77737,#e1306c,#c13584)}
+.btn-tiktok{background:#000;color:#fff}
+.btn-email{background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet)}
+.btn-call{background:#f7d21e;color:#000}
+footer{margin-top:50px;padding:20px;text-align:center;background:#f9f9f9;color:var(--muted);font-size:0.9rem}
+.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.footer-top>div{flex:1}
+.footer-links,.footer-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.bottom-band{background:#4B0082;color:#fff;padding:10px;text-align:center;font-size:0.85rem;margin-top:20px}
+.chat-fab{position:fixed;right:18px;bottom:80px;background:linear-gradient(90deg,#4B0082,#6A2DBD);color:#fff;padding:14px 18px;border-radius:999px;cursor:pointer;box-shadow:0 10px 20px rgba(0,0,0,0.2);font-weight:700;z-index:1000;text-decoration:none;transition:transform 0.15s ease}
+.chat-fab:hover{transform:scale(1.08)}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <h1>Contactez-nous</h1>
+  <p>Retrouvez LH Institut sur vos réseaux préférés</p>
+</header>
+
+<main>
+  <h2 style="color:var(--violet);margin-bottom:10px">Nos liens officiels</h2>
+  <div class="contact-buttons">
+    <a class="btn-facebook" href="https://www.facebook.com/profile.php?id=61574064175490" target="_blank">📘 Facebook</a>
+    <a class="btn-whatsapp" href="https://wa.me/2290153321211" target="_blank">💬 WhatsApp</a>
+    <a class="btn-instagram" href="https://www.instagram.com/ladies2108?igsh=dWczdDVzd3lham1r" target="_blank">📸 Instagram</a>
+    <a class="btn-tiktok" href="https://vm.tiktok.com/ZMHntsqgsEeFW-S92qC/" target="_blank">🎵 TikTok</a>
+    <a class="btn-email" href="mailto:ladieshouse516@gmail.com" target="_blank">📧 Email</a>
+    <a class="btn-call" href="tel:+2290153321211">📞 Appel</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div style="font-weight:800;color:var(--violet);font-family:'Playfair Display',serif">LH Institut</div>
+      <div style="color:var(--muted);font-size:0.95rem;margin-top:6px">Ouidah, Bénin — © 2025 LH Institut</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="rendezvous.html">Prendre rendez-vous</a>
+      <a href="formation.html">Formation</a>
+      <a href="faq.html">Aide</a>
+    </div>
+    <div class="footer-actions">
+      <a href="https://wa.me/2290153321211" target="_blank">WhatsApp</a>
+      <a href="mailto:ladieshouse516@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<div class="bottom-band">
+  <div class="inner">Site créé par LH Institut — Tous droits réservés</div>
+</div>
+
+<!-- Chat bouton flottant -->
+<a href="chat.html" class="chat-fab">💬 Chat</a>
+
+</body>
+  </html>

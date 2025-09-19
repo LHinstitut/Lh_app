@@ -1,166 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat - LH Institut</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --violet: #4B0082;
-      --gold: #C9A66B;
-      --bg: #fff;
-      --muted: #555;
-    }
-    * {margin:0;padding:0;box-sizing:border-box;}
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: #000;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    a {text-decoration: none; color: inherit;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat - LH Institut</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --violet: #4B0082;
+  --gold: #C9A66B;
+  --bg: #fff;
+}
+* {margin:0;padding:0;box-sizing:border-box;}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+a {text-decoration: none; color: inherit;}
 
-    /* ===== Banner ===== */
-    header {
-      position: relative;
-      width: 100%;
-      height: 120px;
-      background: url('fond_banniere.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2rem;
-      color: var(--violet);
-      text-shadow: 0 0 10px var(--gold), 0 0 20px #fff;
-    }
-    header p {
-      background: rgba(201,166,107,0.2);
-      padding: 3px 10px;
-      border-radius: 8px;
-      margin-top: 5px;
-      font-weight: 600;
-      color: var(--violet);
-    }
-    header .accueil {
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      background: var(--violet);
-      color: #fff;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 0 5px var(--gold);
-    }
-    header .accueil:hover {background: var(--gold); color:#000;}
+/* ===== Banner ===== */
+header {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background: url('fond_banniere.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+header h1 {font-size:2rem;color:var(--violet);text-shadow:0 0 10px var(--gold),0 0 20px #fff;}
+header p {background: rgba(201,166,107,0.2);padding:3px 10px;border-radius:8px;margin-top:5px;font-weight:600;color:var(--violet);}
+header .accueil {
+  position:absolute;top:10px;left:15px;
+  background:var(--violet);color:#fff;padding:5px 12px;
+  border-radius:20px;font-size:0.9rem;font-weight:600;box-shadow:0 0 5px var(--gold);
+}
+header .accueil:hover {background:var(--gold);color:#000;}
 
-    /* ===== Chat Section ===== */
-    .chat-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      max-width: 800px;
-      margin: 20px auto;
-      border: 2px solid var(--violet);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fafafa;
-    }
-    .chat-box {
-      flex: 1;
-      padding: 15px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .message {
-      max-width: 80%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      line-height: 1.4;
-      font-size: 0.95rem;
-      position: relative;
-    }
-    .bot {
-      background: #eee;
-      align-self: flex-start;
-    }
-    .user {
-      background: var(--violet);
-      color: #fff;
-      align-self: flex-end;
-    }
-    .chat-input {
-      display: flex;
-      border-top: 2px solid var(--violet);
-    }
-    .chat-input input {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-      border-radius: 0;
-    }
-    .chat-input button {
-      background: var(--violet);
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      padding: 0 20px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .chat-input button:hover {background: var(--gold); color:#000;}
+/* ===== Chat Section ===== */
+.chat-container {
+  flex:1;display:flex;flex-direction:column;max-width:800px;margin:20px auto;
+  border:2px solid var(--violet);border-radius:12px;overflow:hidden;background:#fafafa;
+}
+.chat-box {
+  flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;
+}
+.message {
+  max-width:80%;padding:10px 14px;border-radius:12px;line-height:1.4;font-size:0.95rem;
+  position:relative;opacity:0;transform:translateY(10px) scale(0.98);
+  animation: fadeInUp 0.4s forwards;
+}
+@keyframes fadeInUp {
+  to {opacity:1;transform:translateY(0) scale(1);}
+}
+.bot {background:#eee;align-self:flex-start;}
+.user {background:var(--violet);color:#fff;align-self:flex-end;animation: popZoom 0.3s;}
+@keyframes popZoom {0%{transform:scale(0.9);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
+.sticker {display:inline-block;margin-left:5px;animation:pulse 0.8s infinite alternate;font-size:1.2rem;}
+@keyframes pulse {from{transform:scale(1);}to{transform:scale(1.25) rotate(5deg);}}
 
-    /* Footer */
-    footer {
-      background: #1a1a1a;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-    }
-    footer::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      height: 2px;
-      background: var(--gold);
-    }
-    footer .liens {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 15px;
-    }
-    footer a {
-      background: var(--violet);
-      color: #fff;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    footer a:hover {background: var(--gold); color: #000;}
+.typing-dots span {
+  display:inline-block;width:6px;height:6px;margin:0 2px;background:#888;border-radius:50%;
+  animation: bounce 0.6s infinite alternate;
+}
+.typing-dots span:nth-child(2){animation-delay:0.2s;}
+.typing-dots span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce {from{transform:translateY(0);}to{transform:translateY(-6px);}}
 
-    @media(max-width:600px){
-      .chat-container {margin:10px;}
-      .message {font-size:0.9rem;}
-    }
-  </style>
+.chat-input {display:flex;border-top:2px solid var(--violet);}
+.chat-input input {flex:1;padding:12px;border:none;outline:none;font-size:1rem;border-radius:0;}
+.chat-input button {
+  background:var(--violet);border:none;color:#fff;font-size:1.2rem;padding:0 20px;cursor:pointer;transition:0.3s;
+}
+.chat-input button:hover {background:var(--gold);color:#000;}
+
+/* Footer */
+footer {
+  background:#1a1a1a;color:#fff;text-align:center;padding:20px;position:relative;
+}
+footer::before {
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:90%;height:2px;background:var(--gold);
+}
+footer .liens {
+  display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:15px;
+}
+footer a {background:var(--violet);color:#fff;padding:8px 18px;border-radius:20px;font-weight:600;transition:background 0.3s ease;}
+footer a:hover {background:var(--gold);color:#000;}
+
+@media(max-width:600px){.chat-container{margin:10px;}.message{font-size:0.9rem;}}
+</style>
 </head>
 <body>
 
@@ -196,76 +130,74 @@ const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 
+// FAQ améliorée + stickers
 const faq = {
-  "produits cheveux secs":"💇‍♀️ Pour vos cheveux secs, nous recommandons nos soins hydratants et masques nourrissants spécialement conçus pour restaurer brillance et douceur.",
-  "produits anti chute":"🌱 Nos sérums et lotions anti-chute sont efficaces pour renforcer les cheveux et réduire leur perte avec un usage régulier.",
-  "cheveux enfants":"👶 Les produits LH Institut conviennent aux enfants dès 6 ans. Nous avons une gamme douce adaptée à leur cuir chevelu délicat.",
-  "combien temps résultats":"⏳ Les résultats sont visibles généralement après 2 à 3 semaines d’utilisation régulière, selon le type de cheveux.",
-  "livraison":"📦 Nous livrons à l’international. Pour plus de rapidité, la livraison express est disponible et prend environ 5 jours.",
-  "suivi commande":"🔎 Après validation de votre commande, vous recevez un lien de suivi par email et WhatsApp pour connaître l’état exact de votre colis.",
-  "rendez-vous":"📅 Vous pouvez réserver votre créneau en ligne sur la page pour une consultation gratuite ou un soin cheveux<a href='rendezvous.html' target='_blank'>Prendre rendez-vous</a>.",
-  "annuler rendez-vous":"❌ Il est possible d’annuler ou de modifier votre rendez-vous jusqu’à 24h avant l’heure prévue via la page <a href='rendezvous.html' target='_blank'>Prendre rendez-vous</a>.",
-  "packs mariage":"👰 Nous proposons des forfaits coiffure et soins mariage personnalisés. Plus d’infos sur demande ou via <a href='rendezvous.html' target='_blank'>Prendre rendez-vous</a>.",
-  "hommes":"🧔 Nos services sont aussi ouverts aux hommes, pour soins et coiffures adaptés.",
-  "formation":"🎓 Nous offrons des formations professionnelles en présentiel et en ligne. Tous les détails sont disponibles sur <a href='formation.html' target='_blank'>Formation</a>.",
-  "paiement plusieurs fois":"💳 Certaines formations peuvent être réglées en plusieurs fois. Consultez la page <a href='formation.html' target='_blank'>Formation</a> pour les options de paiement.",
-  "partenaire":"🤝 Vous souhaitez devenir partenaire ? Inscrivez-vous directement via <a href='partenaire.html' target='_blank'>Devenir partenaire</a>.",
-  "dropshipping":"📦 Nous ne faisons pas de dropshipping. Nous proposons toutefois un programme distributeur à découvrir sur demande.",
+  "bonjour":"Bonjour ! 😊 comment puis-je vous aider ?<span class='sticker'>👋</span>",
+  "salut":"Salut ! 😄 <span class='sticker'>✌️</span>",
+  "merci":"Avec plaisir ! 💖 ravie d'avoir pu vous aider<span class='sticker'>✨</span>",
+  "super":"Super ! 🎉 <span class='sticker'>🎊</span>",
+  "génial":"Génial ! 😍 <span class='sticker'>🌟</span>",
+  "produits cheveux secs":"💇‍♀️ Pour cheveux secs, nos soins hydratants et masques nourrissants restaurent brillance et douceur.",
+  "produits anti chute":"🌱 Nos sérums et lotions anti-chute renforcent vos cheveux avec un usage régulier.",
+  "cheveux enfants":"👶 Conviennent dès 5 ans, gamme douce adaptée aux cuirs chevelus délicats.",
+  "rendez-vous":"📅 Réservez un créneau gratuit pour consultation cheveux sur <a href='rendezvous.html' target='_blank'>Prendre rendez-vous</a>.",
+  "annuler rendez-vous":"❌ Annulation possible 24h avant via <a href='rendezvous.html' target='_blank'>Prendre rendez-vous</a>.",
+  "formation":"🎓 Formations pro en présentiel et en ligne : <a href='formation.html' target='_blank'>Formation</a>.",
+  "paiement plusieurs fois":"💳 Certaines formations peuvent être payées en plusieurs fois.",
+  "partenaire":"🤝 Devenir partenaire : <a href='partenaire.html' target='_blank'>Devenir partenaire</a>.",
+  "livraison":"📦 Livraison internationale disponible, express sous 5 jours.",
+  "suivi commande":"🔎 Après validation, lien de suivi par email et WhatsApp.",
+  "teint":"✨ Produits pour le teint disponibles pour éclat et uniformité de la peau.",
+  "forme":"💪 Produits pour la forme et les rondeurs, poudres, huiles et graines naturels.",
+  "ventre plat":"🌿 Produits ventre plat pour confort et silhouette améliorée.",
+  "ingrédients":"🧴 Ingrédients pour fabrication cosmétique : huiles, poudres, graines naturelles.",
   "horaires":"🕘 Nos horaires : lundi au samedi de 9h à 19h.",
-  "jours fériés":"🎉 Les horaires pour jours fériés sont annoncés sur nos réseaux sociaux avant chaque fête.",
-  "fidélité":"💜 Une carte fidélité est offerte dès le 2ᵉ achat. Demandez-la à votre rendez-vous ou lors de votre commande.",
-  "garantie":"✅ Tous nos produits sont garantis authentiques. Nous ne faisons pas de retour classique mais offrons une assistance personnalisée."
+  "jours fériés":"🎉 Horaires spéciaux annoncés sur nos réseaux sociaux.",
+  "fidélité":"💜 Carte fidélité offerte dès le 3ᵉ achat.",
+  "garantie":"✅ Tous nos produits sont garantis authentiques. Assistance personnalisée disponible."
 };
 
-function addMessage(text, sender){
-  const msg = document.createElement("div");
-  msg.classList.add("message", sender);
-  msg.innerHTML = text;
+function addMessage(text,sender){
+  const msg=document.createElement("div");
+  msg.classList.add("message",sender);
+  msg.innerHTML=text;
   chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBox.scrollTop=chatBox.scrollHeight;
 }
 
 function botReply(input){
-  const q = input.toLowerCase();
-  let response = null;
-  for(const key in faq){
-    if(q.includes(key)){
-      response = faq[key];
-      break;
-    }
-  }
-  if(response){
-    // animation "..."
-    const typing = document.createElement("div");
-    typing.classList.add("message","bot");
-    typing.innerHTML = "💬 ...";
-    chatBox.appendChild(typing);
-    chatBox.scrollTop = chatBox.scrollHeight;
-    setTimeout(()=>{
-      typing.remove();
+  const q=input.toLowerCase();
+  let response=null;
+  for(const key in faq){if(q.includes(key)){response=faq[key];break;}}
+
+  // animation "typing..."
+  const typing=document.createElement("div");
+  typing.classList.add("message","bot");
+  typing.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
+  chatBox.appendChild(typing);
+  chatBox.scrollTop=chatBox.scrollHeight;
+
+  setTimeout(()=>{
+    typing.remove();
+    if(response){
       addMessage(response,"bot");
-    },1000 + Math.random()*2000);
-  } else {
-    addMessage(
-      "😕 Je n’ai pas trouvé de réponse. Vous pouvez nous contacter directement : "+
+    } else {
+      addMessage("😕 Je n’ai pas trouvé de réponse. Contactez-nous : "+
       `<a href='https://wa.me/2290153321211' target='_blank'>WhatsApp</a> ou `+
-      `<a href='mailto:ladieshouse516@gmail.com'>Email</a>.`,
-      "bot"
-    );
-  }
+      `<a href='mailto:ladieshouse516@gmail.com'>Email</a>.`,"bot");
+    }
+  },1000+Math.random()*2000);
 }
 
 sendBtn.addEventListener("click",()=>{
-  const val = userInput.value.trim();
+  const val=userInput.value.trim();
   if(!val) return;
   addMessage(val,"user");
-  userInput.value = "";
+  userInput.value="";
   botReply(val);
 });
 
-userInput.addEventListener("keypress",(e)=>{
-  if(e.key === "Enter") sendBtn.click();
-});
+userInput.addEventListener("keypress",(e)=>{if(e.key==="Enter") sendBtn.click();});
 </script>
 </body>
 </html>
